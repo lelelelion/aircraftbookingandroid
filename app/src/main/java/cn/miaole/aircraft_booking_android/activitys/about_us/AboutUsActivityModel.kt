@@ -1,0 +1,3 @@
+package cn.miaole.aircraft_booking_android.activitys.about_us
+
+class AboutUsActivityModel(aboutUsPresenter: AboutUsACtivityPresenter) : AboutUsActivityContract.Model

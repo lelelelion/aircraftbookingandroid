@@ -30,7 +30,9 @@
         <activity android:name=".activitys.register.RegisterActivity" />
         <activity android:name=".activitys.forget_pwd.ForgetPwdActivity" />
         <activity android:name=".activitys.my_order.MyOrderActivity" />
-        <activity android:name=".activitys.my_trip.MyTripActivity"></activity>
+        <activity android:name=".activitys.my_trip.MyTripActivity" />
+        <activity android:name=".activitys.about_us.AboutUsActivity" />
+        <activity android:name=".activitys.passengers.PassengersActivity"></activity>
     </application>
 
 </manifest>

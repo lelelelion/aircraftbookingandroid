@@ -39,9 +39,7 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = resources.getColor(R.color.colorPrimary)
-        }
+
         initView()
     }
 
