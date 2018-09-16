@@ -1,0 +1,3 @@
+package cn.miaole.aircraft_booking_android.activitys.my_order
+
+class MyOrderActivityModel(myOrderActivityPresenter: MyOrderActivityPresenter) : MyOrderActivityContract.Model

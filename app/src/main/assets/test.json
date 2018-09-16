@@ -1,0 +1,98 @@
+{
+  "cities": [
+    {
+      "cityName": "石家庄市"
+    },
+    {
+      "cityName": "邯郸市"
+    },
+    {
+      "cityName": "唐山市"
+    },
+    {
+      "cityName": "保定市"
+    },
+    {
+      "cityName": "秦皇岛市"
+    },
+    {
+      "cityName": "邢台市"
+    },
+    {
+      "cityName": "张家口市"
+    },
+    {
+      "cityName": "承德市"
+    },
+    {
+      "cityName": "沧州市"
+    },
+    {
+      "cityName": "廊坊市"
+    },
+    {
+      "cityName": "衡水市"
+    },
+    {
+      "cityName": "辛集市"
+    },
+    {
+      "cityName": "晋州市"
+    },
+    {
+      "cityName": "新乐市"
+    },
+    {
+      "cityName": "遵化市"
+    },
+    {
+      "cityName": "迁安市"
+    },
+    {
+      "cityName": "霸州市"
+    },
+    {
+      "cityName": "三河市"
+    },
+    {
+      "cityName": "定州市"
+    },
+    {
+      "cityName": "涿州市"
+    },
+    {
+      "cityName": "安国市"
+    },
+    {
+      "cityName": "高碑店市"
+    },
+    {
+      "cityName": "泊头市"
+    },
+    {
+      "cityName": "任丘市"
+    },
+    {
+      "cityName": "黄骅市"
+    },
+    {
+      "cityName": "河间市"
+    },
+    {
+      "cityName": "冀州市"
+    },
+    {
+      "cityName": "深州市"
+    },
+    {
+      "cityName": "南宫市"
+    },
+    {
+      "cityName": "沙河市"
+    },
+    {
+      "cityName": "武安市"
+    }
+  ],
+  "provinceName": "河北省"
+}

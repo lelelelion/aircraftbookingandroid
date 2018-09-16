@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:orientation="vertical">
+
+    <include layout="@layout/bar_item" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/blue_thumb" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:text="洋小奕"
+            android:textColor="@color/text_gray"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/imgAvatar"
+            app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/imgAvatar" />
+    </android.support.constraint.ConstraintLayout>
+
+
+    <cn.miaole.aircraft_booking_android.views.LineMenuItem
+        android:id="@+id/lmiMyOrder"
+        style="@style/activity_main_mine_line_menu_style"
+        android:layout_marginTop="20dp"
+        app:left_resource="@drawable/order"
+        app:menu_title="@string/my_order" />
+
+    <include layout="@layout/divider_line" />
+
+    <cn.miaole.aircraft_booking_android.views.LineMenuItem
+        android:id="@+id/lmiMyTrip"
+        style="@style/activity_main_mine_line_menu_style"
+        app:left_resource="@drawable/trip"
+        app:menu_title="@string/my_trip" />
+
+
+    <cn.miaole.aircraft_booking_android.views.LineMenuItem
+        android:id="@+id/lmiPassengerInfo"
+        style="@style/activity_main_mine_line_menu_style"
+        android:layout_marginTop="20dp"
+        app:left_resource="@drawable/location"
+        app:menu_title="@string/passenger_info" />
+
+    <cn.miaole.aircraft_booking_android.views.LineMenuItem
+        android:id="@+id/lmiAboutUs"
+        style="@style/activity_main_mine_line_menu_style"
+        app:left_resource="@drawable/about"
+        android:layout_marginTop="20dp"
+        app:menu_title="@string/about_us" />
+
+    <TextView
+        android:id="@+id/lmiLogout"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:textAlignment="center"
+        android:background="@drawable/ripple_bg_white"
+        android:textSize="16sp"
+        android:textColor="@color/text_gray"
+        android:padding="12dp"
+        />
+
+
+
+</LinearLayout>

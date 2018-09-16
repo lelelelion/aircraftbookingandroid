@@ -1,0 +1,3 @@
+package cn.miaole.aircraft_booking_android.fragments.main.treasure
+
+class TreasureFragmentModel(treasureFragmentPresenter: TreasureFragmentPresenter) : TreasureFragmentContract.Model

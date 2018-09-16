@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <cn.miaole.aircraft_booking_android.views.TinImageView
+        android:id="@+id/imgIndex"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        style="@style/activity_main_bottom_style"
+        android:src="@drawable/index"
+        />
+
+    <cn.miaole.aircraft_booking_android.views.TinImageView
+        android:id="@+id/imgTreasure"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        style="@style/activity_main_bottom_style"
+        android:src="@drawable/treasure" />
+
+    <cn.miaole.aircraft_booking_android.views.TinImageView
+        android:id="@+id/imgMine"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        style="@style/activity_main_bottom_style"
+        android:src="@drawable/mine" />
+</LinearLayout>

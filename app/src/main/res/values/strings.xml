@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">飞机订票</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="login">登陆</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="go_to_register_now">现在去注册</string>
+    <string name="my_order">我的订单</string>
+    <string name="mine">我的</string>
+    <string name="my_trip">我的行程</string>
+    <string name="passenger_info">乘机人信息</string>
+    <string name="about_us">关于我们</string>
+    <string name="logout">退出</string>
+    <string name="treasure">宝典</string>
+    <string name="index">首页</string>
+</resources>
