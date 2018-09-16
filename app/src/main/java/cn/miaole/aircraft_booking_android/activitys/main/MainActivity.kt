@@ -9,13 +9,19 @@ import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.ABAFragment
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
 import cn.miaole.aircraft_booking_android.extensions.scaleXY
+import cn.miaole.aircraft_booking_android.extensions.toast
 import cn.miaole.aircraft_booking_android.fragments.main.index.IndexFragment
 import cn.miaole.aircraft_booking_android.fragments.main.mine.MineFragment
 import cn.miaole.aircraft_booking_android.fragments.main.treasure.TreasureFragment
 import cn.miaole.aircraft_booking_android.utils.CityNamesUtil
+import cn.miaole.aircraft_booking_android.utils.LocationUtil
 import cn.miaole.aircraft_booking_android.views.TinImageView
+import com.github.dfqin.grantor.PermissionListener
+import com.github.dfqin.grantor.PermissionsUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_bottom.*
+import org.jetbrains.anko.design.snackbar
+import java.util.jar.Manifest
 
 class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContract.View,
         ABAFragment.OnFragmentInteractionListener {
@@ -35,12 +41,40 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
     private val fragments = mutableListOf<Fragment>()
     private val viewArr = mutableListOf<TinImageView>()
 
+    override fun onResume() {
+        super.onResume()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         initView()
+
+        //init LocationUtil
+        LocationUtil.bind(this)
+        requestLocationPermission()
+    }
+
+    /**
+     * 动态请求获取地理位置的权限
+     */
+    private fun requestLocationPermission() {
+        PermissionsUtil.requestPermission(this, object : PermissionListener {
+            override fun permissionDenied(permission: Array<out String>) {
+                toast("Execuse me? 定位权限都不给，能不能愉快的玩耍了...手机将在3妙后爆炸")
+                toast("3")
+                toast("2")
+                toast("1")
+                toast("boom")
+                toast("骗你的>''<，下次记得给我权限")
+            }
+
+            override fun permissionGranted(permission: Array<out String>) {
+                layout.post {       //界面渲染完成后执行
+                    LocationUtil.ensureLocationServerOpen()
+                }
+            }
+        }, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+
     }
 
     private fun initView() {
@@ -81,7 +115,6 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
 
         //初始时显示首页
         viewPager.currentItem = 0
-        select(BOTTOM_INDEX)
     }
 
 
@@ -117,5 +150,9 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
         }.forEach {
             op(it)
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }

@@ -36,6 +36,8 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
     //anko-sqlite
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version" // For SnackBars
     // Recycler 扩展
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
     //EventBus
@@ -51,4 +53,8 @@ dependencies {
     implementation "com.android.support:design:${support_version}"
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
+    //动态权限申请库
+    implementation 'com.github.dfqin:grantor:2.5'
+    //Logger
+    implementation 'com.orhanobut:logger:2.2.0'
 }
