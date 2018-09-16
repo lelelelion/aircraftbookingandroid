@@ -1,11 +1,16 @@
 package cn.miaole.aircraft_booking_android.fragments.main.index
 
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.DatePicker
 import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.fragment.MVPBaseFragment
+import cn.miaole.aircraft_booking_android.extensions.showSelectDateDialog
+import cn.miaole.aircraft_booking_android.extensions.toast
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.bar_item.*
+import kotlinx.android.synthetic.main.fragment_main_index.*
 
 class IndexFragment : MVPBaseFragment<IndexFragmentPresenter>(), IndexFragmentContract.View {
 
@@ -25,6 +30,12 @@ class IndexFragment : MVPBaseFragment<IndexFragmentPresenter>(), IndexFragmentCo
 
     override fun initView() {
         easyBar.init(mode = EasyBar.Mode.NONE, titleRes = R.string.index)
+        lmiSelectDate.setOnClickListener { view ->
+            //选择出发日期
+            activity?.showSelectDateDialog { v, year, month, day ->
+                lmiSelectDate.setValue("$year-${month + 1}-$day")
+            }
+        }
     }
 
     override fun initialLoadData() {

@@ -1,13 +1,17 @@
 package cn.miaole.aircraft_booking_android.extensions
 
+import android.R
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.support.annotation.StringRes
+import android.support.annotation.StyleRes
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import cn.miaole.aircraft_booking_android.model.params.IntentParam
+import java.util.*
 
 fun Context.toast(info: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, info, duration)
@@ -66,4 +70,14 @@ fun Context.showSoftKeyboard(view: View) {
     if (im.isActive)
         return
     im.showSoftInputFromInputMethod(view.windowToken, 0)
+}
+
+
+fun Context.showSelectDateDialog(@StyleRes style: Int = R.style.Theme_DeviceDefault_Dialog,
+                                 listener: (View, Int, Int, Int) -> Unit =
+                                         { view, year, month, dayOfMonth -> }) {
+    val c = Calendar.getInstance()
+    DatePickerDialog(this, style, listener, c.get(Calendar.YEAR),
+            c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
+            .show()
 }

@@ -11,25 +11,25 @@
         layout="@layout/bar_item" />
 
     <TextView
-        android:id="@+id/editText"
+        android:id="@+id/tvStartLocation"
         style="@style/activity_main_index_input_location_text_style"
         android:text="大连"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/imgRoundTrip"
+        app:layout_constraintEnd_toStartOf="@+id/imgRoundTrip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintTop_toTopOf="@+id/imgRoundTrip" />
 
     <TextView
-        android:id="@+id/editText2"
+        android:id="@+id/tvTargetLocation"
         style="@style/activity_main_index_input_location_text_style"
         android:text="深圳"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/imgRoundTrip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintStart_toEndOf="@+id/imgRoundTrip"
+        app:layout_constraintTop_toBottomOf="@+id/imgRoundTrip" />
 
     <cn.miaole.aircraft_booking_android.views.TinImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imgRoundTrip"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
@@ -43,4 +43,32 @@
         app:layout_constraintTop_toBottomOf="@+id/include3" />
 
 
+    <cn.miaole.aircraft_booking_android.views.LineMenuItem
+        android:id="@+id/lmiSelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@color/white"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/imgRoundTrip"
+        app:menu_title="@string/setout_date"
+        app:menu_value="@string/please_select">
+
+    </cn.miaole.aircraft_booking_android.views.LineMenuItem>
+
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/index_search_btn_bg"
+        android:text="@string/search"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lmiSelectDate" />
 </android.support.constraint.ConstraintLayout>

@@ -47,5 +47,8 @@ dependencies {
     // supports
     implementation "com.android.support:recyclerview-v7:${support_version}"
     implementation "com.android.support:appcompat-v7:${support_version}"
+    implementation "com.android.support:support-v4:${support_version}"
+    implementation "com.android.support:design:${support_version}"
+    //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
 }
