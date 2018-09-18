@@ -15,7 +15,6 @@ import cn.miaole.aircraft_booking_android.fragments.main.mine.MineFragment
 import cn.miaole.aircraft_booking_android.fragments.main.treasure.TreasureFragment
 import cn.miaole.aircraft_booking_android.model.internet.api.APIManager
 import cn.miaole.aircraft_booking_android.model.internet.data.LocationInfo
-import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
 import cn.miaole.aircraft_booking_android.model.internet.rx.RxObserver
 import cn.miaole.aircraft_booking_android.utils.LocationUtil
 import cn.miaole.aircraft_booking_android.utils.RxSchedulersHelper
@@ -26,7 +25,6 @@ import com.github.dfqin.grantor.PermissionsUtil
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_bottom.*
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContract.View,
         ABAFragment.OnFragmentInteractionListener {
