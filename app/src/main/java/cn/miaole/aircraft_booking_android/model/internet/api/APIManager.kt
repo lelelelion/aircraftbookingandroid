@@ -107,12 +107,12 @@ object APIManager {
     ////////////////////////////////////////////////////////////
     ///////// 地理信息相关API
     ////////////////////////////////////////////////////////////
-    fun getLocationInfo(location: String)
+    fun getLocationInfo(latitude: Double, longitude: Double)
             : Observable<LocationInfo> {
         return Observable.just(1)
                 .flatMap {
                     return@flatMap getLocationService(GsonConverterFactory.create())
-                            .getLocationInfo(location)
+                            .getLocationInfo("$latitude,$longitude")
                 }
     }
 }

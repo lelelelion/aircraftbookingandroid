@@ -1,5 +1,6 @@
 package cn.miaole.aircraft_booking_android.activitys.main
 
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -45,21 +46,6 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
     private val fragments = mutableListOf<Fragment>()
     private val viewArr = mutableListOf<TinImageView>()
 
-    override fun onResume() {
-        super.onResume()
-        if (LocationUtil.isOpen()) {
-            APIManager
-                    .getLocationService(GsonConverterFactory.create())
-                    .getLocationInfo("35.658651,139.745415")
-                    .compose(RxSchedulersHelper.io_main())
-                    .subscribe(object : RxObserver<LocationInfo>() {
-                        override fun _onNext(t: LocationInfo) {
-                            Logger.i(t.easyToJson())
-                        }
-                    })
-        }
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +54,26 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
 
         //init LocationUtil
         LocationUtil.bind(this)
+        LocationUtil.beginListen()
+        LocationUtil.addOnLocationChangeListener(object: LocationUtil.OnLocationChangeListener{
+            override fun onGpsLocationChange(location: Location) {
+                Logger.i("gps location change", location.easyToJson())
+            }
+
+            override fun onNetworkLocationChange(location: Location) {
+                Logger.i("network location change: (${location.latitude}, ${location.longitude})")
+                APIManager.getLocationInfo(location.latitude, location.longitude)
+                        .compose(RxSchedulersHelper.io_main())
+                        .subscribe(object : RxObserver<LocationInfo>(){
+                            override fun _onNext(t: LocationInfo) {
+                                Logger.i(t.easyToJson())
+                                toast(t.result.formatted_address)
+                            }
+                        })
+
+            }
+
+        })
         requestLocationPermission()
     }
 
