@@ -1,7 +1,6 @@
 package cn.miaole.aircraft_booking_android.activitys.main
 
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
@@ -13,15 +12,20 @@ import cn.miaole.aircraft_booking_android.extensions.toast
 import cn.miaole.aircraft_booking_android.fragments.main.index.IndexFragment
 import cn.miaole.aircraft_booking_android.fragments.main.mine.MineFragment
 import cn.miaole.aircraft_booking_android.fragments.main.treasure.TreasureFragment
-import cn.miaole.aircraft_booking_android.utils.CityNamesUtil
+import cn.miaole.aircraft_booking_android.model.internet.api.APIManager
+import cn.miaole.aircraft_booking_android.model.internet.data.LocationInfo
+import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
+import cn.miaole.aircraft_booking_android.model.internet.rx.RxObserver
 import cn.miaole.aircraft_booking_android.utils.LocationUtil
+import cn.miaole.aircraft_booking_android.utils.RxSchedulersHelper
+import cn.miaole.aircraft_booking_android.utils.easyToJson
 import cn.miaole.aircraft_booking_android.views.TinImageView
 import com.github.dfqin.grantor.PermissionListener
 import com.github.dfqin.grantor.PermissionsUtil
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_bottom.*
-import org.jetbrains.anko.design.snackbar
-import java.util.jar.Manifest
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContract.View,
         ABAFragment.OnFragmentInteractionListener {
@@ -43,7 +47,20 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
 
     override fun onResume() {
         super.onResume()
+        if (LocationUtil.isOpen()) {
+            APIManager
+                    .getLocationService(GsonConverterFactory.create())
+                    .getLocationInfo("35.658651,139.745415")
+                    .compose(RxSchedulersHelper.io_main())
+                    .subscribe(object : RxObserver<LocationInfo>() {
+                        override fun _onNext(t: LocationInfo) {
+                            Logger.i(t.easyToJson())
+                        }
+                    })
+        }
+
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -69,7 +86,8 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
             }
 
             override fun permissionGranted(permission: Array<out String>) {
-                layout.post {       //界面渲染完成后执行
+                layout.post {
+                    //界面渲染完成后执行
                     LocationUtil.ensureLocationServerOpen()
                 }
             }
@@ -115,6 +133,8 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
 
         //初始时显示首页
         viewPager.currentItem = 0
+
+        select(BOTTOM_INDEX)
     }
 
 
