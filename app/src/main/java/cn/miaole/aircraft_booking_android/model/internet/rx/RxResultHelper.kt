@@ -11,9 +11,9 @@ class RxResultHelper {
             return ObservableTransformer { upstream ->
                 upstream.flatMap<T> { result ->
                     try {
-                        when {
-                            result.success -> return@flatMap Observable.just(result.data)
-                            !result.success -> return@flatMap Observable.error(OtherServerException(result.msg))
+                        when(result.code){
+                            0 -> return@flatMap Observable.just(result.data)
+                            -1 -> return@flatMap Observable.error(OtherServerException(result.msg))
                             else -> return@flatMap Observable.empty<T>()
                         }
                     } catch (e: NullPointerException) {          //服务器如果没有返回体，则result可能为空

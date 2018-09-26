@@ -2,8 +2,10 @@ package cn.miaole.aircraft_booking_android.model.internet.api
 
 import android.content.Context
 import cn.miaole.aircraft_booking_android.model.internet.data.LocationInfo
+import cn.miaole.aircraft_booking_android.model.internet.data.LoginResponseData
 import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
 import cn.miaole.aircraft_booking_android.model.internet.services.LocationService
+import cn.miaole.aircraft_booking_android.model.internet.services.UserService
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import okhttp3.Interceptor
@@ -32,6 +34,7 @@ object APIManager {
 
     //Services
     private var locationService: LocationService? = null
+    private var userService: UserService? = null
 
     /**
      * 初始化客户端
@@ -64,11 +67,18 @@ object APIManager {
     }
 
 
-    fun getLocationService(vararg factory: Converter.Factory): LocationService {
+    private fun getLocationService(vararg factory: Converter.Factory): LocationService {
         if (locationService == null)
             locationService = createService(LocationService::class.java, *factory,
                     baseUrl = ApiInfo.BAIDU_LOCATION_BASE_URL)
         return locationService!!
+    }
+
+
+    private fun getUserService(vararg factory: Converter.Factory): UserService {
+        if (userService == null)
+            userService = createService(UserService::class.java, *factory)
+        return userService!!
     }
 
 
@@ -79,8 +89,6 @@ object APIManager {
         override fun intercept(chain: Interceptor.Chain): Response {
             val request = chain.request()
             //begin deal some operation before request
-
-
 
             val originResponse = chain.proceed(request)
             //begin do something after receive response
@@ -113,6 +121,20 @@ object APIManager {
                 .flatMap {
                     return@flatMap getLocationService(GsonConverterFactory.create())
                             .getLocationInfo("$latitude,$longitude")
+                }
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////////
+    ////////// 用户管理相关API
+    ////////////////////////////////////////////////////////////
+    fun login(username: String, password: String) : Observable<ResponseBody<LoginResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .login(username, password)
                 }
     }
 }

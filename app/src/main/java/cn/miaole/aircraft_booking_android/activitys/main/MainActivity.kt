@@ -52,6 +52,11 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
 
         //init LocationUtil
         LocationUtil.bind(this)
+        requestLocationPermission()
+    }
+
+
+    private fun initLocationListener(){
         LocationUtil.beginListen()
         LocationUtil.addOnLocationChangeListener(object: LocationUtil.OnLocationChangeListener{
             override fun onGpsLocationChange(location: Location) {
@@ -72,9 +77,8 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
             }
 
         })
-        requestLocationPermission()
-    }
 
+    }
     /**
      * 动态请求获取地理位置的权限
      */
@@ -93,6 +97,7 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
                 layout.post {
                     //界面渲染完成后执行
                     LocationUtil.ensureLocationServerOpen()
+                    initLocationListener()
                 }
             }
         }, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION)

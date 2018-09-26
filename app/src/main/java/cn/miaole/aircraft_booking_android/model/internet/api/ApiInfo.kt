@@ -1,7 +1,8 @@
 package cn.miaole.aircraft_booking_android.model.internet.api
 
 object ApiInfo {
-    const val BASE_URL = "http//39.106.138.103:7676"
+//    const val BASE_URL = "http://39.106.138.103:9797"
+    const val BASE_URL = "http://10.0.2.2:9797"
     const val BAIDU_LOCATION_BASE_URL = "http://api.map.baidu.com"
 
     /****************************************************************
@@ -20,4 +21,64 @@ object ApiInfo {
     const val BAIDU_LOCATION_GET_LOCATION_KEY = "ak"
     const val BAIDU_LOCATION_GET_LOCATION_CALLBACK = "callback"
     const val BAIDU_LOCATION_GET_LOCATION_OUTPUT = "output"
+
+
+    /*****************************************************************
+     *
+     * 用户相关
+     *
+     *****************************************************************/
+
+    // 登陆
+    const val LOGIN_URL = "/login"
+    const val LOGIN_PARAM_USERNAME = "username"
+    const val LOGIN_PARAM_PASSWORD = "password"
+
+    // 注册
+    const val REGISTER_URL = "/register"
+    const val REGISTER_PARAM_PHONE = "phone"
+    const val REGISTER_PARAM_EMAIL = "email"
+    const val REGISTER_PARAM_NICKNAME = "nickname"
+
+    //更新用户信息
+    const val UPDATE_USER_INFO_URL = "/updateUserInfo"
+    const val UPDATE_USER_INFO_PARAM_PHONE = "phone"
+    const val UPDATE_USER_INFO_PARAM_EMAIL = "email"
+    const val UPDATE_USER_INFO_PARAM_NICKNAME = "nickname"
+
+    //获取用户信息
+    const val GET_USER_INFO_URL = "/getUserInfo"
+
+    //更新TOKEN
+    const val UPDATE_TOKEN_URL = "/updateToken"
+
+    //修改密码
+    const val MODIFY_PASSWORD_URL = "/modifyPassword"
+    const val MODIFY_PASSWORD_PARAM_OLD_PASSWORD = "oldPassword"
+    const val MODIFY_PASSWORD_PARAM_NEW_PASSWORD = "newPassword"
+
+    //添加乘机人信息
+    const val ADD_PASSENGER_CONTACT_URL = "/addPassengerContact"
+    const val ADD_PASSENGER_CONTACT_PARAM_NAME = "name"
+    const val ADD_PASSENGER_CONTACT_PARAM_CERTIFICATE_TYPE = "certificateType"
+    const val ADD_PASSENGER_CONTACT_PARAM_CERTIFICATE_VALUE = "certificateValue"
+    const val ADD_PASSENGER_CONTACT_PARAM_PHONE = "phone"
+    const val ADD_PASSENGER_CONTACT_PARAM_EMAIL = "email"
+    const val ADD_PASSENGER_CONTACT_PARAM_BIRTHDAY = "birthday"
+
+    //获取乘机人信息列表
+    const val GET_PASSENGER_CONTACTS_URL = "/getPassengerContacts"
+
+    //更新乘机人信息
+    const val UPDATE_PASSENGER_CONTACT_URL = "/updatePassengerContact"
+    const val UPDATE_PASSENGER_CONTACT_PARAM_NAME = "name"
+    const val UPDATE_PASSENGER_CONTACTPARAM_CERTIFICATE_TYPE = "certificateType"
+    const val UPDATE_PASSENGER_CONTACTPARAM_CERTIFICATE_VALUE = "certificateValue"
+    const val UPDATE_PASSENGER_CONTACTPARAM_PHONE = "phone"
+    const val UPDATE_PASSENGER_CONTACTPARAM_EMAIL = "email"
+    const val UPDATE_PASSENGER_CONTACTPARAM_BIRTHDAY = "birthday"
+
+    //删除乘机人信息
+    const val DELETE_PASSENGER_CONTACT_URL = "/deletePassengerContact"
+    const val DELETE_PASSENGER_CONTACT_PARAM_ID = "id"
 }
