@@ -13,7 +13,6 @@ import cn.miaole.aircraft_booking_android.extensions.loadCircle
 import cn.miaole.aircraft_booking_android.model.ABAApi
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.bar_item.*
 import kotlinx.android.synthetic.main.fragment_main_mine.*
 

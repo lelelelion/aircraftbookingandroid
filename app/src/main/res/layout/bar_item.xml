@@ -12,6 +12,7 @@
         app:icon_size="56dp"
         app:icon_margin="16dp"
         app:title_size="17sp"
+        app:left_icon="@drawable/back"
         app:left_text="@string/back"
         app:right_text="@string/sure"
         app:title_color="#fff"
