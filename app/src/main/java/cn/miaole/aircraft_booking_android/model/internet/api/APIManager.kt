@@ -1,10 +1,8 @@
 package cn.miaole.aircraft_booking_android.model.internet.api
 
 import android.content.Context
-import cn.miaole.aircraft_booking_android.model.internet.data.LocationInfo
-import cn.miaole.aircraft_booking_android.model.internet.data.LoginResponseData
-import cn.miaole.aircraft_booking_android.model.internet.data.RegisterResponseData
-import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
+import cn.miaole.aircraft_booking_android.model.ABAApi
+import cn.miaole.aircraft_booking_android.model.internet.data.*
 import cn.miaole.aircraft_booking_android.model.internet.services.LocationService
 import cn.miaole.aircraft_booking_android.model.internet.services.UserService
 import com.orhanobut.logger.Logger
@@ -150,6 +148,17 @@ object APIManager {
                 .flatMap {
                     return@flatMap getUserService(GsonConverterFactory.create())
                             .register(username, password, email, username, phone)
+                }
+    }
+
+    /**
+     * 获取乘机人信息
+     */
+    fun getPassengerContacts(): Observable<ResponseBody<List<Passenger>>>{
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .getPassengerContacts(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken)
                 }
     }
 }

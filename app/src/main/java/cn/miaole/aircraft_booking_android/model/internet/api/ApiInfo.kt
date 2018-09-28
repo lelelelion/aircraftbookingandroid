@@ -6,6 +6,9 @@ object ApiInfo {
     const val BASE_URL = "http://10.6.109.110:9797"
     const val BAIDU_LOCATION_BASE_URL = "http://api.map.baidu.com"
 
+    const val REQUIRE_HEADER_AUTHORIZARION = "authorization"
+    const val BASE_TOKEN_PREFIX = "Bearer "
+
     /****************************************************************
      *
      * 定位相关

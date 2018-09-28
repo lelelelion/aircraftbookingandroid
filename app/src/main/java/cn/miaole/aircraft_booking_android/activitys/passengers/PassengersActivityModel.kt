@@ -1,3 +1,22 @@
 package cn.miaole.aircraft_booking_android.activitys.passengers
 
-class PassengersActivityModel(passengersActivityPresenter: PassengersActivityPresenter) : PassengersActivityContract.Model
+import cn.miaole.aircraft_booking_android.model.internet.api.APIManager
+import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
+import cn.miaole.aircraft_booking_android.model.internet.rx.RxObserver
+import cn.miaole.aircraft_booking_android.model.internet.rx.RxResultHelper
+import cn.miaole.aircraft_booking_android.utils.RxSchedulersHelper
+
+class PassengersActivityModel(val mPresenter: PassengersActivityPresenter)
+    : PassengersActivityContract.Model {
+    override fun loadPassengers(page: Int, isRefresh: Boolean) {
+        APIManager
+                .getPassengerContacts()
+                .compose(RxSchedulersHelper.io_main())
+                .compose(RxResultHelper.handleResult())
+                .subscribe(object : RxObserver<List<Passenger>>() {
+                    override fun _onNext(t: List<Passenger>) {
+                        mPresenter.loadPassengersSuccess(t, isRefresh)
+                    }
+                })
+    }
+}

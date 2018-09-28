@@ -37,6 +37,8 @@ abstract class RxObserver<T>(private val mp: BasePresenter<*, *>? = null,
     }
 
     override fun onNext(t: T) {
+        EventBus.getDefault()
+                .post(RefreshEvent())
         _onNext(t)
     }
 

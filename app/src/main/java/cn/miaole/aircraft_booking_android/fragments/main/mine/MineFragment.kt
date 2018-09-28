@@ -15,6 +15,7 @@ import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.bar_item.*
 import kotlinx.android.synthetic.main.fragment_main_mine.*
+import org.jetbrains.anko.design.snackbar
 
 class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContract.View {
     override fun logoutSuccess() {
@@ -83,8 +84,13 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
         }
 
         lmiPassengerInfo.setOnClickListener {
-            //乘机人信息
-            activity?.jumpTo(PassengersActivity::class.java)
+            if(ABAApi.isLogin){
+                //乘机人信息
+                activity?.jumpTo(PassengersActivity::class.java)
+            } else {
+                lmiPassengerInfo.snackbar(R.string.please_login_first)
+            }
+
         }
 
         lmiLogout.setOnClickListener {

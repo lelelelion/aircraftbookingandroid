@@ -2,12 +2,11 @@ package cn.miaole.aircraft_booking_android.model.internet.services
 
 import cn.miaole.aircraft_booking_android.model.internet.api.ApiInfo
 import cn.miaole.aircraft_booking_android.model.internet.data.LoginResponseData
+import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
 import cn.miaole.aircraft_booking_android.model.internet.data.RegisterResponseData
 import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserService {
 
@@ -33,4 +32,13 @@ interface UserService {
             @Field(ApiInfo.REGISTER_PARAM_NICKNAME) nickname: String,
             @Field(ApiInfo.REGISTER_PARAM_PHONE) phone: String
     ): Observable<ResponseBody<RegisterResponseData>>
+
+
+    /**
+     * 获取乘机人信息
+     */
+    @GET(ApiInfo.GET_PASSENGER_CONTACTS_URL)
+    fun getPassengerContacts(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String
+            ): Observable<ResponseBody<List<Passenger>>>
 }
