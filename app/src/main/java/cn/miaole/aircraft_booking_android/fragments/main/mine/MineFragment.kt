@@ -9,12 +9,20 @@ import cn.miaole.aircraft_booking_android.activitys.my_order.MyOrderActivity
 import cn.miaole.aircraft_booking_android.activitys.my_trip.MyTripActivity
 import cn.miaole.aircraft_booking_android.activitys.passengers.PassengersActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
+import cn.miaole.aircraft_booking_android.extensions.loadCircle
+import cn.miaole.aircraft_booking_android.model.ABAApi
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.bar_item.*
 import kotlinx.android.synthetic.main.fragment_main_mine.*
 
 class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContract.View {
+    override fun logoutSuccess() {
+        activity?.apply {
+            jumpTo(LoginActivity::class.java)
+        }
+    }
 
     companion object {
         fun newInstance(): MineFragment {
@@ -25,6 +33,25 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        tvUsername.post {
+            if (ABAApi.isLogin) {
+                ABAApi.userInfo?.apply {
+                    tvUsername.text = username
+                    val str = if (avatar == "")     //默认头像
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTESwK4T8ZwCO1iFj5KfEn0GmVCBapK4vS45O70d8D9CTl5XoGW"
+                    else
+                        ""
+                    imgAvatar.loadCircle(str)
+                }
+            } else {
+                tvUsername.setText(R.string.click_here_to_login)
+                imgAvatar.loadCircle(R.drawable.blue_thumb)
+            }
+        }
+    }
+
     override fun onCreatePresenter(): MineFragmentPresenter =
             MineFragmentPresenter(this)
 
@@ -32,6 +59,14 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
 
     override fun initView() {
         easyBar.init(mode = EasyBar.Mode.NONE, titleRes = R.string.mine)
+
+        clUser.setOnClickListener {
+            if(ABAApi.isLogin){
+
+            } else {
+                activity?.jumpTo(LoginActivity::class.java)
+            }
+        }
 
         lmiMyOrder.setOnClickListener {
             //我的订单
@@ -55,7 +90,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
 
         lmiLogout.setOnClickListener {
             //退出登陆
-            activity?.jumpTo(LoginActivity::class.java)
+            mPresenter.logout()
         }
     }
 

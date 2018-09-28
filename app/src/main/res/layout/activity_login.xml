@@ -22,13 +22,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include"
-        app:srcCompat="@drawable/flight" />
+        app:srcCompat="@drawable/icon" />
 
     <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
         android:id="@+id/etUsername"
         style="@style/login_et_style"
         android:hint="@string/username"
-        app:left_drawable="@drawable/user"
+        app:left_drawable="@drawable/mine"
         app:right_drawable="@drawable/delete"
         app:drawable_width="30dp"
         app:drawable_height="30dp"

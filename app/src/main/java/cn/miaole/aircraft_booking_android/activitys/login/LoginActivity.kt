@@ -4,6 +4,7 @@ import android.os.Bundle
 import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
 import cn.miaole.aircraft_booking_android.activitys.forget_pwd.ForgetPwdActivity
+import cn.miaole.aircraft_booking_android.activitys.main.MainActivity
 import cn.miaole.aircraft_booking_android.activitys.register.RegisterActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.model.internet.data.LoginResponseData
@@ -13,8 +14,10 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.bar_item.*
 
 class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(), LoginActivityContract.View {
-    override fun loginSuccess(loginResponseData: LoginResponseData) {
 
+    override fun loginSuccess(loginResponseData: LoginResponseData) {
+        jumpTo(MainActivity::class.java)
+        finish()
     }
 
     override fun onCretePresenter(): LoginActivityPresenter =

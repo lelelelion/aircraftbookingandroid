@@ -104,7 +104,7 @@ object APIManager {
                 val responseString = buffer.clone().readString(charset!!)
                 Logger.i(responseString)
                 Logger.i(request.url().toString())
-                Logger.i("token: ${request.header("token")}")
+                Logger.i("token: ${request.header("authorization")}")
             }
             return originResponse
         }
