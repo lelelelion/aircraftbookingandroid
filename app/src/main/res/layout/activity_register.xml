@@ -10,21 +10,66 @@
         android:id="@+id/include2"
         layout="@layout/bar_item" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="注册"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
+        android:id="@+id/etUsername"
+        style="@style/login_et_style"
+        android:layout_marginTop="50dp"
+        android:hint="@string/username"
+        app:drawable_height="30dp"
+        app:drawable_width="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        app:left_drawable="@drawable/mine"
+        app:right_drawable="@drawable/delete"
+        app:right_drawable_height="20dp"
+        app:right_drawable_width="20dp" />
 
+    <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
+        android:id="@+id/etPassword"
+        style="@style/login_et_style"
+        android:hint="@string/password"
+        android:layout_marginTop="25dp"
+        app:left_drawable="@drawable/password"
+        app:drawable_width="30dp"
+        app:drawable_height="30dp"
+        app:right_drawable_width="20dp"
+        app:right_drawable_height="20dp"
+        android:inputType="textPassword"
+        app:right_drawable="@drawable/delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
+    <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
+        android:id="@+id/etRePassword"
+        style="@style/login_et_style"
+        android:hint="@string/confirm_password"
+        android:layout_marginTop="25dp"
+        app:left_drawable="@drawable/password"
+        app:drawable_width="30dp"
+        app:drawable_height="30dp"
+        app:right_drawable_width="20dp"
+        app:right_drawable_height="20dp"
+        android:inputType="textPassword"
+        app:right_drawable="@drawable/delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        style="?borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/primary_btn_bg"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRePassword" />
 
 </android.support.constraint.ConstraintLayout>

@@ -3,6 +3,7 @@ package cn.miaole.aircraft_booking_android.model.internet.api
 import android.content.Context
 import cn.miaole.aircraft_booking_android.model.internet.data.LocationInfo
 import cn.miaole.aircraft_booking_android.model.internet.data.LoginResponseData
+import cn.miaole.aircraft_booking_android.model.internet.data.RegisterResponseData
 import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
 import cn.miaole.aircraft_booking_android.model.internet.services.LocationService
 import cn.miaole.aircraft_booking_android.model.internet.services.UserService
@@ -125,16 +126,30 @@ object APIManager {
     }
 
 
-
-
     ////////////////////////////////////////////////////////////
     ////////// 用户管理相关API
     ////////////////////////////////////////////////////////////
-    fun login(username: String, password: String) : Observable<ResponseBody<LoginResponseData>> {
+
+    /**
+     * 登陆
+     */
+    fun login(username: String, password: String): Observable<ResponseBody<LoginResponseData>> {
         return Observable.just(1)
                 .flatMap {
                     return@flatMap getUserService(GsonConverterFactory.create())
                             .login(username, password)
+                }
+    }
+
+    /**
+     * 注册
+     */
+    fun register(username: String, password: String, email: String = "", phone: String = "")
+            : Observable<ResponseBody<RegisterResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .register(username, password, email, username, phone)
                 }
     }
 }

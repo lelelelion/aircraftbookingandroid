@@ -2,7 +2,8 @@ package cn.miaole.aircraft_booking_android.model.internet.api
 
 object ApiInfo {
 //    const val BASE_URL = "http://39.106.138.103:9797"
-    const val BASE_URL = "http://10.0.2.2:9797"
+//    const val BASE_URL = "http://10.0.2.2:9797"
+    const val BASE_URL = "http://10.6.109.110:9797"
     const val BAIDU_LOCATION_BASE_URL = "http://api.map.baidu.com"
 
     /****************************************************************
@@ -36,6 +37,8 @@ object ApiInfo {
 
     // 注册
     const val REGISTER_URL = "/register"
+    const val REGISTER_PARAM_USERNAME = "username"
+    const val REGISTER_PARAM_PASSWORD = "password"
     const val REGISTER_PARAM_PHONE = "phone"
     const val REGISTER_PARAM_EMAIL = "email"
     const val REGISTER_PARAM_NICKNAME = "nickname"

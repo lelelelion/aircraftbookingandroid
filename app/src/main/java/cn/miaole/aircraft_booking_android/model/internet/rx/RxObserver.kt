@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 
 abstract class RxObserver<T>(private val mp: BasePresenter<*, *>? = null,
-                             private val context: Context? = null): Observer<T>{
+                             private val context: Context? = null) : Observer<T> {
     /**
      * 一般不在这个回调里面处理数据，所以默认给一个空实现
      */
@@ -33,6 +33,7 @@ abstract class RxObserver<T>(private val mp: BasePresenter<*, *>? = null,
                 .post(RefreshEvent())
 
         //todo 下面对错误进行统一处理
+        _onError(e.message ?: "")
     }
 
     override fun onNext(t: T) {
@@ -42,5 +43,8 @@ abstract class RxObserver<T>(private val mp: BasePresenter<*, *>? = null,
 
     abstract fun _onNext(t: T)
 
+    open fun _onError(msg: String) {
+
+    }
 
 }

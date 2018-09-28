@@ -20,7 +20,7 @@
         tools:ignore="UnusedAttribute">
         <activity
             android:name=".activitys.main.MainActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity android:name=".activitys.welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
