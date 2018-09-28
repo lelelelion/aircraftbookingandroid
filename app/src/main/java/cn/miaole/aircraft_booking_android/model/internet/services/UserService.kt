@@ -41,4 +41,19 @@ interface UserService {
     fun getPassengerContacts(
             @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String
             ): Observable<ResponseBody<List<Passenger>>>
+
+    /**
+     * 添加乘机人信息
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.ADD_PASSENGER_CONTACT_URL)
+    fun addPassengerContact(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Field(ApiInfo.ADD_PASSENGER_CONTACT_PARAM_NAME) name: String,
+            @Field(ApiInfo.ADD_PASSENGER_CONTACT_PARAM_CERTIFICATE_TYPE) certificateType: Int,
+            @Field(ApiInfo.ADD_PASSENGER_CONTACT_PARAM_CERTIFICATE_VALUE) certificateValue: String,
+            @Field(ApiInfo.ADD_PASSENGER_CONTACT_PARAM_PHONE) phone: String,
+            @Field(ApiInfo.ADD_PASSENGER_CONTACT_PARAM_EMAIL) email: String,
+            @Field(ApiInfo.ADD_PASSENGER_CONTACT_IS_ADULT) isAdult: Boolean
+    ): Observable<ResponseBody<Passenger>>
 }

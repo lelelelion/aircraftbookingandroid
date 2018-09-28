@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
+import retrofit2.http.Header
 import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
 
@@ -154,11 +155,30 @@ object APIManager {
     /**
      * 获取乘机人信息
      */
-    fun getPassengerContacts(): Observable<ResponseBody<List<Passenger>>>{
+    fun getPassengerContacts(): Observable<ResponseBody<List<Passenger>>> {
         return Observable.just(1)
                 .flatMap {
                     return@flatMap getUserService(GsonConverterFactory.create())
                             .getPassengerContacts(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken)
+                }
+    }
+
+    /**
+     * 添加乘机人
+     */
+    fun addPassengerContact(
+            name: String,
+            certificateType: Int,
+            certificateValue: String,
+            isAdult: Boolean,
+            phone: String = "",
+            email: String = ""
+    ): Observable<ResponseBody<Passenger>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .addPassengerContact(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    name, certificateType, certificateValue, phone, email, isAdult)
                 }
     }
 }

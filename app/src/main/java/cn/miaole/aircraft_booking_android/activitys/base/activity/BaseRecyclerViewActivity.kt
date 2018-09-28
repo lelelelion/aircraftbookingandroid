@@ -10,7 +10,7 @@ import cn.miaole.aircraft_booking_android.views.easy_refresh.EasyRefreshFooter
 import cn.miaole.aircraft_booking_android.views.easy_refresh.EasyRefreshLayout
 import cn.miaole.aircraft_booking_android.views.easy_refresh.arrow.ArrowRefreshHeader
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.j.ming.arcmenu2.extension.MyDelegates
+import cn.miaole.aircraft_booking_android.extensions.MyDelegates
 import cn.miaole.aircraft_booking_android.activitys.base.mvp.BasePresenter
 import cn.miaole.aircraft_booking_android.activitys.base.mvp.BaseView
 import kotlinx.android.synthetic.main.activity_base_recycler_view.*

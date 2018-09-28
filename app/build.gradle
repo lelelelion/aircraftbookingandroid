@@ -34,7 +34,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     //easybar
     implementation 'com.github.SunnyQjm:EasyBar:v1.1.4'
-    implementation 'com.github.SunnyQjm:ArcMenu:v1.1.1'
     implementation 'com.github.SunnyQjm:DCIMDemo:v1.1.0'
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'

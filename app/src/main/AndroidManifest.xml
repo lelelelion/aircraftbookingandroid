@@ -4,7 +4,7 @@
     package="cn.miaole.aircraft_booking_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--定位相关权限-->
+    <!-- 定位相关权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -35,6 +35,7 @@
         <activity android:name=".activitys.my_trip.MyTripActivity" />
         <activity android:name=".activitys.about_us.AboutUsActivity" />
         <activity android:name=".activitys.passengers.PassengersActivity" />
+        <activity android:name=".activitys.add_passenger.AddPassengerActivity"></activity>
     </application>
 
 </manifest>

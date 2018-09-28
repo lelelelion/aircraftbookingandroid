@@ -23,4 +23,23 @@
     <string name="twice_password_not_same">两次输入的密码不一致</string>
     <string name="register_success">注册成功</string>
     <string name="please_login_first">请先登陆</string>
+    <string name="name">姓名</string>
+    <string name="add_passenger_name_hint">旅客姓名（必填）</string>
+    <string name="certification_number">证件号码</string>
+    <string name="add_passenger_certification_number_hint">证件号码（必填）</string>
+    <string name="ID">身份证</string>
+    <string name="certification_type">证件类型</string>
+    <string name="man_type">旅客类型</string>
+    <string name="man_type_adult"><![CDATA[成人>12]]></string>
+    <string name="phone_number">手机号</string>
+    <string name="phone_number_hint">手机号（选填）</string>
+    <string name="email">邮箱</string>
+    <string name="email_hint">邮箱（选填）</string>
+    <string name="add_passenger">添加乘机人</string>
+    <string name="save">保存</string>
+    <string name="select_passenger_type">选择旅客类型</string>
+    <string name="please_input_validate_id_card">请输入有效的身份证</string>
+    <string name="please_input_validate_phone_number">请输入有效的手机号</string>
+    <string name="please_input_validate_email">请输入有效的邮箱地址</string>
+    <string name="add_success">添加成功</string>
 </resources>

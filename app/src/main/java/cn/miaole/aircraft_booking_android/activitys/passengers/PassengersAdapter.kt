@@ -12,6 +12,7 @@ class PassengersAdapter(private val mList: MutableList<Passenger>)
             item?.let { item ->
                 holder.setText(R.id.tvName, item.name)
                         .setText(R.id.tvID, item.certificateValue)
+                        .setText(R.id.tvManType, if(item.isAdult) "成人" else "儿童")
             }
         }
     }

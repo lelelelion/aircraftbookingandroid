@@ -11,5 +11,6 @@ data class Passenger(
     val createdAt: Long,
     val updatedAt: Long,
     val version: Int,
-    val uid: String
+    val uid: String,
+    val isAdult: Boolean
 )

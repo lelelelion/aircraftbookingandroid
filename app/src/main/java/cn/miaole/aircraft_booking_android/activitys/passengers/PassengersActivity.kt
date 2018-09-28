@@ -1,12 +1,19 @@
 package cn.miaole.aircraft_booking_android.activitys.passengers
 
+import android.animation.Animator
 import cn.miaole.aircraft_booking_android.R
+import cn.miaole.aircraft_booking_android.activitys.add_passenger.AddPassengerActivity
 import cn.miaole.aircraft_booking_android.activitys.base.activity.BaseRecyclerViewActivity
+import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
+import cn.miaole.aircraft_booking_android.views.arcmenu2.ArcMenu
+import cn.miaole.aircraft_booking_android.views.arcmenu2.DensityUtil
+import cn.miaole.aircraft_booking_android.views.arcmenu2.FloatingButton
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_base_recycler_view.*
 import kotlinx.android.synthetic.main.bar_item.*
+import org.jetbrains.anko.design.snackbar
 
 class PassengersActivity : BaseRecyclerViewActivity<PassengersActivityPresenter>(),
         PassengersActivityContract.View {
@@ -27,6 +34,11 @@ class PassengersActivity : BaseRecyclerViewActivity<PassengersActivityPresenter>
         mPresenter.loadPassengers(page, isRefresh)
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadData(true)
+    }
+
     override fun onCretePresenter(): PassengersActivityPresenter =
             PassengersActivityPresenter(this)
 
@@ -40,11 +52,17 @@ class PassengersActivity : BaseRecyclerViewActivity<PassengersActivityPresenter>
         adapter?.apply {
             bindToRecyclerView(recyclerView)
         }
+        val fab = FloatingButton(this, FloatingButton.Position.POSITION_BOTTOM_RIGHT,
+                DensityUtil.dip2px(this, 50f), contentRes = R.drawable.icon_add,
+                contentMargin = DensityUtil.dip2px(this, 12f),
+                layoutMarginVertical = DensityUtil.dip2px(this, 24f),
+                layoutMarginHorizon = DensityUtil.dip2px(this, 24f))
 
+        fab.setOnClickListener {
+            jumpTo(AddPassengerActivity::class.java)
+        }
         //不允许上拉加载更多
         refreshLayout.setLoadAble(false)
 
-        //加载数据
-        loadData(true)
     }
 }

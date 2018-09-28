@@ -7,7 +7,7 @@ import kotlin.reflect.KProperty
  * Created by sunny on 17-12-28.
  */
 
-object MyDelegates {
+object MyDelegates{
     fun <T> notNullAndOnlyInitFirstTime(): ReadWriteProperty<Any?, T> = NotNullAndOnlyInitFirstTime()
 }
 
@@ -32,7 +32,7 @@ private class NotNullAndOnlyInitFirstTime<T> : ReadWriteProperty<Any?, T> {
      * @param value     元数据
      */
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        if (this.value == null)
+        if(this.value == null)
             this.value = value
     }
 

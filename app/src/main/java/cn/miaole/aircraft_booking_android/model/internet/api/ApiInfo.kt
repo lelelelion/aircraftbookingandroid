@@ -70,6 +70,7 @@ object ApiInfo {
     const val ADD_PASSENGER_CONTACT_PARAM_CERTIFICATE_VALUE = "certificateValue"
     const val ADD_PASSENGER_CONTACT_PARAM_PHONE = "phone"
     const val ADD_PASSENGER_CONTACT_PARAM_EMAIL = "email"
+    const val ADD_PASSENGER_CONTACT_IS_ADULT = "isAdult"
     const val ADD_PASSENGER_CONTACT_PARAM_BIRTHDAY = "birthday"
 
     //获取乘机人信息列表
