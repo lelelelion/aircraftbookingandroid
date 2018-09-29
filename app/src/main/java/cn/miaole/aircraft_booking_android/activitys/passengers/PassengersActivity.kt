@@ -6,6 +6,8 @@ import cn.miaole.aircraft_booking_android.activitys.add_passenger.AddPassengerAc
 import cn.miaole.aircraft_booking_android.activitys.base.activity.BaseRecyclerViewActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
+import cn.miaole.aircraft_booking_android.model.params.IntentParam
+import cn.miaole.aircraft_booking_android.utils.easyToJson
 import cn.miaole.aircraft_booking_android.views.arcmenu2.ArcMenu
 import cn.miaole.aircraft_booking_android.views.arcmenu2.DensityUtil
 import cn.miaole.aircraft_booking_android.views.arcmenu2.FloatingButton
@@ -17,6 +19,8 @@ import org.jetbrains.anko.design.snackbar
 
 class PassengersActivity : BaseRecyclerViewActivity<PassengersActivityPresenter>(),
         PassengersActivityContract.View {
+
+
     override fun loadPassengersSuccess(t: List<Passenger>, isRefresh: Boolean) {
         (adapter as PassengersAdapter)
                 .apply {
@@ -51,7 +55,14 @@ class PassengersActivity : BaseRecyclerViewActivity<PassengersActivityPresenter>
         adapter = PassengersAdapter(mutableListOf())
         adapter?.apply {
             bindToRecyclerView(recyclerView)
+            setOnItemClickListener { adapter, view, position ->
+                (adapter as PassengersAdapter).getItem(position)?.let {
+                    jumpTo(AddPassengerActivity::class.java, IntentParam()
+                            .add(AddPassengerActivity.PARAM_PASSENGER, it.easyToJson()))
+                }
+            }
         }
+
         val fab = FloatingButton(this, FloatingButton.Position.POSITION_BOTTOM_RIGHT,
                 DensityUtil.dip2px(this, 50f), contentRes = R.drawable.icon_add,
                 contentMargin = DensityUtil.dip2px(this, 12f),

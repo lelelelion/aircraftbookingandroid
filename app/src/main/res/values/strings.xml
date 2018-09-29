@@ -44,4 +44,6 @@
     <string name="add_success">添加成功</string>
     <string name="vertify_fail">验证失败</string>
     <string name="select_city">选择城市</string>
+    <string name="update_passenger_info">修改乘机人信息</string>
+    <string name="modify_success">修改成功</string>
 </resources>

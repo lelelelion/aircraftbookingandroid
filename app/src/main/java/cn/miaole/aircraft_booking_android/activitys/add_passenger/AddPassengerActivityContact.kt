@@ -8,10 +8,17 @@ import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
 interface AddPassengerActivityContact {
     interface View : BaseView {
         fun addPassengerSuccess(passenger: Passenger)
+        fun updatePassengerSuccess(passenger: Passenger)
     }
 
     interface Model : BaseModel {
         fun addPassengerContact(
+                name: String, certificateType: Int, certificateValue: String, isAdult: Boolean,
+                phone: String = "", email: String = ""
+        )
+
+        fun updatePassengerContact(
+                id: String,
                 name: String, certificateType: Int, certificateValue: String, isAdult: Boolean,
                 phone: String = "", email: String = ""
         )
@@ -22,6 +29,15 @@ interface AddPassengerActivityContact {
                 name: String, certificateType: Int, certificateValue: String, isAdult: Boolean,
                 phone: String = "", email: String = ""
         )
+
+        abstract fun updatePassengerContact(
+                id: String,
+                name: String, certificateType: Int, certificateValue: String, isAdult: Boolean,
+                phone: String = "", email: String = ""
+        )
+
         abstract fun addPassengerSuccess(passenger: Passenger)
+        abstract fun updatePassengerSuccess(passenger: Passenger)
+
     }
 }

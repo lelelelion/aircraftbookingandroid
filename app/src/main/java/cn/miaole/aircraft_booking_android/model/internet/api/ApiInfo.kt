@@ -78,12 +78,14 @@ object ApiInfo {
 
     //更新乘机人信息
     const val UPDATE_PASSENGER_CONTACT_URL = "/updatePassengerContact"
+    const val UPDATE_PASSENGER_CONTACT_ID = "id"
     const val UPDATE_PASSENGER_CONTACT_PARAM_NAME = "name"
-    const val UPDATE_PASSENGER_CONTACTPARAM_CERTIFICATE_TYPE = "certificateType"
-    const val UPDATE_PASSENGER_CONTACTPARAM_CERTIFICATE_VALUE = "certificateValue"
-    const val UPDATE_PASSENGER_CONTACTPARAM_PHONE = "phone"
-    const val UPDATE_PASSENGER_CONTACTPARAM_EMAIL = "email"
-    const val UPDATE_PASSENGER_CONTACTPARAM_BIRTHDAY = "birthday"
+    const val UPDATE_PASSENGER_CONTACT_PARAM_CERTIFICATE_TYPE = "certificateType"
+    const val UPDATE_PASSENGER_CONTACT_PARAM_CERTIFICATE_VALUE = "certificateValue"
+    const val UPDATE_PASSENGER_CONTACT_PARAM_PHONE = "phone"
+    const val UPDATE_PASSENGER_CONTACT_PARAM_EMAIL = "email"
+    const val UPDATE_PASSENGER_CONTACT_IS_ADULT = "isAdult"
+    const val UPDATE_PASSENGER_CONTACT_PARAM_BIRTHDAY = "birthday"
 
     //删除乘机人信息
     const val DELETE_PASSENGER_CONTACT_URL = "/deletePassengerContact"

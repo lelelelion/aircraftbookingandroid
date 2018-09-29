@@ -202,6 +202,27 @@ object APIManager {
     }
 
 
+    /**
+     * 更新乘机人
+     */
+    fun updatePassengerContact(
+            id: String,
+            name: String,
+            certificateType: Int,
+            certificateValue: String,
+            isAdult: Boolean,
+            phone: String = "",
+            email: String = ""
+    ): Observable<ResponseBody<Passenger>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .updatePassengerContact(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    id, name, certificateType, certificateValue, phone, email, isAdult)
+                }
+    }
+
+
     ///////////////////////////////////////////////////////////////////////
     /////////   通用API接口
     ///////////////////////////////////////////////////////////////////////

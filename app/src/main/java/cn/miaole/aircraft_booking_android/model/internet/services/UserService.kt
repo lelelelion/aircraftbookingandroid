@@ -30,7 +30,9 @@ interface UserService {
             @Field(ApiInfo.REGISTER_PARAM_PHONE) phone: String
     ): Observable<ResponseBody<RegisterResponseData>>
 
-
+    /**
+     * Token 失效后更新
+     */
     @GET(ApiInfo.UPDATE_TOKEN_URL)
     fun updateToken(
             @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String
@@ -42,7 +44,7 @@ interface UserService {
     @GET(ApiInfo.GET_PASSENGER_CONTACTS_URL)
     fun getPassengerContacts(
             @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String
-            ): Observable<ResponseBody<List<Passenger>>>
+    ): Observable<ResponseBody<List<Passenger>>>
 
     /**
      * 添加乘机人信息
@@ -57,5 +59,21 @@ interface UserService {
             @Field(ApiInfo.ADD_PASSENGER_CONTACT_PARAM_PHONE) phone: String,
             @Field(ApiInfo.ADD_PASSENGER_CONTACT_PARAM_EMAIL) email: String,
             @Field(ApiInfo.ADD_PASSENGER_CONTACT_IS_ADULT) isAdult: Boolean
+    ): Observable<ResponseBody<Passenger>>
+
+    /**
+     * 更新乘机人信息
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.UPDATE_PASSENGER_CONTACT_URL)
+    fun updatePassengerContact(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_ID) id: String,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_PARAM_NAME) name: String,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_PARAM_CERTIFICATE_TYPE) certificateType: Int,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_PARAM_CERTIFICATE_VALUE) certificateValue: String,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_PARAM_PHONE) phone: String,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_PARAM_EMAIL) email: String,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_IS_ADULT) isAdult: Boolean
     ): Observable<ResponseBody<Passenger>>
 }

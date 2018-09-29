@@ -6,6 +6,7 @@ import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
 import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
 import cn.miaole.aircraft_booking_android.utils.AccountValidatorUtil
+import cn.miaole.aircraft_booking_android.utils.easyToObj
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_add_passenger.*
@@ -16,6 +17,17 @@ import org.jetbrains.anko.toast
 
 class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
         AddPassengerActivityContact.View {
+
+
+    companion object {
+        const val PARAM_PASSENGER = "PARAM_PASSENGER"
+    }
+
+    override fun updatePassengerSuccess(passenger: Passenger) {
+        toast(R.string.modify_success)
+        finish()
+    }
+
     override fun addPassengerSuccess(passenger: Passenger) {
         toast(R.string.add_success)
         finish()
@@ -23,6 +35,8 @@ class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
 
     //是否是成年人
     private var isAdult = true
+
+    private var passenger: Passenger? = null
 
     override fun onCretePresenter(): AddPassengerActivityPresenter = AddPassengerActivityPresenter(this)
 
@@ -58,11 +72,29 @@ class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
                 easyBar.snackbar(R.string.please_input_validate_email)
                 return@init
             }
-            mPresenter.addPassengerContact(name, 0, idCard, isAdult, phone, email)
+            if (passenger != null)
+                mPresenter.updatePassengerContact(passenger!!.id, name, 0, idCard,
+                        isAdult, phone, email)
+            else
+                mPresenter.addPassengerContact(name, 0, idCard, isAdult, phone, email)
         })
 
+        val types = listOf("成人≥12", "2≤儿童<12")
+
+        intent.getStringExtra(PARAM_PASSENGER)?.apply {
+            passenger = this.easyToObj(Passenger::class.java)
+            passenger?.apply {
+                etName.setText(name)
+                etCertificateValue.setText(certificateValue)
+                liManType.setValue(types[if (isAdult) 0 else 1])
+                etPhoneNumber.setText(this.phone)
+                etEmail.setText(this.email)
+                easyBar.setTitle(R.string.update_passenger_info)
+                this@AddPassengerActivity.isAdult = isAdult
+            }
+        }
+
         liManType.setOnClickListener {
-            val types = listOf("成人≥12", "2≤儿童<12")
             selector(getString(R.string.select_passenger_type), types) { dialogInterface, i ->
                 liManType.setValue(types[i])
                 isAdult = i == 0
