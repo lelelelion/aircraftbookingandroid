@@ -15,10 +15,19 @@ import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_base_recycler_view.*
 import kotlinx.android.synthetic.main.bar_item.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.yesButton
 
 class PassengersActivity : BaseRecyclerViewActivity<PassengersActivityPresenter>(),
         PassengersActivityContract.View {
+    override fun deletePassengerSuccess(passenger: Passenger) {
+        (adapter as PassengersAdapter)
+                .apply {
+                    remove(data.indexOf(passenger))
+                }
+    }
 
 
     override fun loadPassengersSuccess(t: List<Passenger>, isRefresh: Boolean) {
@@ -61,6 +70,20 @@ class PassengersActivity : BaseRecyclerViewActivity<PassengersActivityPresenter>
                             .add(AddPassengerActivity.PARAM_PASSENGER, it.easyToJson()))
                 }
             }
+
+            setOnItemLongClickListener { adapter, view, position ->
+                alert(R.string.comfirm_delete) {
+                    yesButton {
+                        (adapter as PassengersAdapter).getItem(position)?.let {
+                            mPresenter.deletePassenger(it)
+                        }
+                    }
+                    noButton {  }
+                }.show()
+
+                return@setOnItemLongClickListener true
+            }
+
         }
 
         val fab = FloatingButton(this, FloatingButton.Position.POSITION_BOTTOM_RIGHT,

@@ -76,4 +76,15 @@ interface UserService {
             @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_PARAM_EMAIL) email: String,
             @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_IS_ADULT) isAdult: Boolean
     ): Observable<ResponseBody<Passenger>>
+
+
+    /**
+     * 删除乘机人
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.DELETE_PASSENGER_CONTACT_URL)
+    fun deletePassengerContact(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_ID) id: String
+    ): Observable<ResponseBody<EmptyResponseData>>
 }

@@ -4,6 +4,14 @@ import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
 
 class PassengersActivityPresenter(passengersActivity: PassengersActivity)
     : PassengersActivityContract.Presenter() {
+    override fun deletePassenger(passenger: Passenger) {
+        mModel.deletePassenger(passenger)
+    }
+
+    override fun deletePassengerSuccess(passenger: Passenger) {
+        mView.deletePassengerSuccess(passenger)
+    }
+
     override fun loadPassengersSuccess(t: List<Passenger>, isRefresh: Boolean) {
         mView.loadPassengersSuccess(t, isRefresh)
     }

@@ -222,6 +222,20 @@ object APIManager {
                 }
     }
 
+    /**
+     * 删除乘机人
+     */
+    fun deletePassengerContact(
+            id: String
+    ): Observable<ResponseBody<EmptyResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .deletePassengerContact(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    id)
+                }
+    }
+
 
     ///////////////////////////////////////////////////////////////////////
     /////////   通用API接口
