@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.annotation.StringRes
 import android.support.annotation.StyleRes
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -41,6 +42,12 @@ fun Context.jumpTo(cls: Class<*>, intentParam: IntentParam? = null, vararg flags
 
 fun Activity.jumpForResult(cls: Class<*>, requestCode: Int, intentParam: IntentParam? = null) {
     val intent = Intent(this, cls)
+    intentParam?.applyParam(intent)
+    startActivityForResult(intent, requestCode)
+}
+
+fun Fragment.jumpForResult(cls: Class<*>, requestCode: Int, intentParam: IntentParam? = null) {
+    val intent = Intent(activity, cls)
     intentParam?.applyParam(intent)
     startActivityForResult(intent, requestCode)
 }

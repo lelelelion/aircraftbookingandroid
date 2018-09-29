@@ -3,7 +3,7 @@ package cn.miaole.aircraft_booking_android.model.internet.api
 object ApiInfo {
 //    const val BASE_URL = "http://39.106.138.103:9797"
 //    const val BASE_URL = "http://10.0.2.2:9797"
-    const val BASE_URL = "http://10.6.109.110:9797"
+    const val BASE_URL = "http://172.6.2.185:9797"
     const val BAIDU_LOCATION_BASE_URL = "http://api.map.baidu.com"
 
     const val REQUIRE_HEADER_AUTHORIZARION = "authorization"
@@ -88,4 +88,12 @@ object ApiInfo {
     //删除乘机人信息
     const val DELETE_PASSENGER_CONTACT_URL = "/deletePassengerContact"
     const val DELETE_PASSENGER_CONTACT_PARAM_ID = "id"
+
+
+    /**********************************************************************
+     *
+     * 通用接口
+     *
+     */
+    const val GET_CITIES = "/getCities"
 }

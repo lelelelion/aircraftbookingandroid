@@ -16,13 +16,21 @@ import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.bar_item.*
 import kotlinx.android.synthetic.main.fragment_main_index.*
 import android.R.attr.data
+import android.content.Intent
+import cn.miaole.aircraft_booking_android.activitys.place_select.PlaceSelectActivity
+import cn.miaole.aircraft_booking_android.extensions.jumpForResult
+import cn.miaole.aircraft_booking_android.extensions.jumpTo
+import cn.miaole.aircraft_booking_android.model.internet.data.City
 import cn.miaole.aircraft_booking_android.utils.easyToJson
+import cn.miaole.aircraft_booking_android.utils.easyToObj
 import com.orhanobut.logger.Logger
 
 
 class IndexFragment : MVPBaseFragment<IndexFragmentPresenter>(), IndexFragmentContract.View {
 
     companion object {
+        const val REQUEST_CODE_START_PLACE = 0
+        const val REQUEST_CODE_TARGET_PLACE = 1
         fun newInstance(): IndexFragment {
             val args = Bundle()
             val fragment = IndexFragment()
@@ -30,6 +38,9 @@ class IndexFragment : MVPBaseFragment<IndexFragmentPresenter>(), IndexFragmentCo
             return fragment
         }
     }
+
+    private var startPlace: City? = null
+    private var targetPlace: City? = null
 
     override fun onCreatePresenter(): IndexFragmentPresenter =
             IndexFragmentPresenter(this)
@@ -45,8 +56,16 @@ class IndexFragment : MVPBaseFragment<IndexFragmentPresenter>(), IndexFragmentCo
             }
         }
 
+        tvStartLocation.setOnClickListener {
+            jumpForResult(PlaceSelectActivity::class.java, REQUEST_CODE_START_PLACE)
+        }
+
+        tvTargetLocation.setOnClickListener {
+            jumpForResult(PlaceSelectActivity::class.java, REQUEST_CODE_TARGET_PLACE)
+        }
 
         btnSearch.setOnClickListener {
+            //搜索
         }
 
     }
@@ -55,4 +74,24 @@ class IndexFragment : MVPBaseFragment<IndexFragmentPresenter>(), IndexFragmentCo
     override fun initialLoadData() {
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_CODE_START_PLACE -> {       //选择起点
+                data?.apply {
+                    startPlace = getStringExtra(PlaceSelectActivity.RESULT_CITY)
+                            .easyToObj(City::class.java)
+                    tvStartLocation.text = startPlace?.name ?: ""
+                }
+            }
+            REQUEST_CODE_TARGET_PLACE -> {
+                data?.apply {
+                    targetPlace = getStringExtra(PlaceSelectActivity.RESULT_CITY)
+                            .easyToObj(City::class.java)
+                    tvTargetLocation.text = targetPlace?.name ?: ""
+                }
+            }
+        }
+    }
 }

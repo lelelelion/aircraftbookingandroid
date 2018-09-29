@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+
+# mob
+-keep class com.mob.**{*;}
+-keep class cn.smssdk.**{*;}
+-dontwarn com.mob.**
+
+# IndexBar
+-dontwarn com.lwkandroid.widget.indexbar.**
+-keep class com.lwkandroid.widget.indexbar.**{*;}

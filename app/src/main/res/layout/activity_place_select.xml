@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activitys.place_select.PlaceSelectActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/bar_item" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <com.lwkandroid.widget.indexbar.IndexBar
+        android:id="@+id/indexBar"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include"
+        android:layout_alignParentEnd="true"
+        app:bg_color_normal="@android:color/transparent"
+        app:bg_color_pressed="#10000000"
+        app:text_color_normal="#3c3c3c"
+        app:text_color_pressed="#000093"
+        app:text_size_normal="14sp"
+        app:text_size_pressed="16sp" />
+
+    <TextView
+        android:id="@+id/tvIndicator"
+        android:visibility="invisible"
+        android:text="A"
+        android:textSize="36sp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:background="#66bbbbbb"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+</RelativeLayout>

@@ -3,6 +3,7 @@ package cn.miaole.aircraft_booking_android.model.internet.api
 import android.content.Context
 import cn.miaole.aircraft_booking_android.model.ABAApi
 import cn.miaole.aircraft_booking_android.model.internet.data.*
+import cn.miaole.aircraft_booking_android.model.internet.services.CommonService
 import cn.miaole.aircraft_booking_android.model.internet.services.LocationService
 import cn.miaole.aircraft_booking_android.model.internet.services.UserService
 import com.orhanobut.logger.Logger
@@ -35,6 +36,7 @@ object APIManager {
     //Services
     private var locationService: LocationService? = null
     private var userService: UserService? = null
+    private var commonService: CommonService? = null
 
     /**
      * 初始化客户端
@@ -81,6 +83,11 @@ object APIManager {
         return userService!!
     }
 
+    private fun getCommonService(vararg factory: Converter.Factory): CommonService {
+        if(commonService == null)
+            commonService = createService(CommonService::class.java, *factory)
+        return commonService!!
+    }
 
     /**
      * 全局的网络请求拦截器
@@ -179,6 +186,24 @@ object APIManager {
                     return@flatMap getUserService(GsonConverterFactory.create())
                             .addPassengerContact(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
                                     name, certificateType, certificateValue, phone, email, isAdult)
+                }
+    }
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////
+    /////////   通用API接口
+    ///////////////////////////////////////////////////////////////////////
+
+    /**
+     * 获取城市列表
+     */
+    fun getCities(): Observable<ResponseBody<List<City>>>{
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getCommonService(GsonConverterFactory.create())
+                            .getCities()
                 }
     }
 }

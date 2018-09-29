@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-
 // 添加插件
 apply plugin: 'com.mob.sdk'
 
@@ -11,8 +10,9 @@ apply plugin: 'com.mob.sdk'
 MobSDK {
     appKey "27f0ed6273924"
     appSecret "9e0451755a73fea3e00d320e75e11969"
+    SMSSDK {
 
-    SMSSDK {}
+    }
 }
 
 android {
@@ -72,4 +72,6 @@ dependencies {
     implementation 'com.github.dfqin:grantor:2.5'
     //Logger
     implementation 'com.orhanobut:logger:2.2.0'
+    //字母排序
+    implementation 'com.lwkandroid:IndexBar:1.0.1'
 }
