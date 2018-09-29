@@ -4,6 +4,7 @@ import android.content.Context
 import cn.miaole.aircraft_booking_android.model.ABAApi
 import cn.miaole.aircraft_booking_android.model.internet.data.*
 import cn.miaole.aircraft_booking_android.model.internet.services.CommonService
+import cn.miaole.aircraft_booking_android.model.internet.services.FlightService
 import cn.miaole.aircraft_booking_android.model.internet.services.LocationService
 import cn.miaole.aircraft_booking_android.model.internet.services.UserService
 import com.google.gson.Gson
@@ -38,6 +39,7 @@ object APIManager {
     private var locationService: LocationService? = null
     private var userService: UserService? = null
     private var commonService: CommonService? = null
+    private var flightService: FlightService? = null
 
     /**
      * 初始化客户端
@@ -88,6 +90,12 @@ object APIManager {
         if (commonService == null)
             commonService = createService(CommonService::class.java, *factory)
         return commonService!!
+    }
+
+    private fun getFlightService(vararg factory: Converter.Factory): FlightService {
+        if (flightService == null)
+            flightService = createService(FlightService::class.java, *factory)
+        return flightService!!
     }
 
     /**
@@ -233,6 +241,23 @@ object APIManager {
                     return@flatMap getUserService(GsonConverterFactory.create())
                             .deletePassengerContact(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
                                     id)
+                }
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////// 航班相关接口
+    //////////////////////////////////////////////////////////////////////
+
+    /**
+     * 检索指定日期，起始城市到到达城市之间可用的航班
+     */
+    fun searchAvailableFlight(fromCityCode: String, toCityCode: String, date: Long, page: Int = 1,
+                              size: Int = 10): Observable<ResponseBody<List<SearchAvaliableFlightResponseData>>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getFlightService(GsonConverterFactory.create())
+                            .searchAvailableFlight(fromCityCode, toCityCode, date, page, size)
                 }
     }
 

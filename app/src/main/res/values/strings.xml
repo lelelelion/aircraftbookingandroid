@@ -47,4 +47,12 @@
     <string name="update_passenger_info">修改乘机人信息</string>
     <string name="modify_success">修改成功</string>
     <string name="comfirm_delete">确定删除？</string>
+    <string name="please_select_from_city">请选择始发城市</string>
+    <string name="please_select_to_city">请选择到达城市</string>
+    <string name="please_select_date">请选择日期</string>
+    <string name="pre_day">前一天</string>
+    <string name="next_day">后一天</string>
+        <string name="search_flight_result_date">%1$d月%2$d日 周%3$s</string>
+    <string name="aircraft_number_and_account">%1$s | 经济舱%2$s折</string>
+    <string name="price">¥%1$s</string>
 </resources>

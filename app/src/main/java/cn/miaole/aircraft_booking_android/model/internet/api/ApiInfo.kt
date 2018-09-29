@@ -96,6 +96,21 @@ object ApiInfo {
      *
      * 通用接口
      *
-     */
+     **********************************************************************/
     const val GET_CITIES = "/getCities"
+
+
+    /**********************************************************************
+     *
+     * 机票订购相关接口
+     *
+     **********************************************************************/
+
+    //检索两个城市之间可用的航班
+    const val SEARCH_AVALIABLE_FLIGHT_URL = "/searchAvailableFlight"
+    const val SEARCH_AVALIABLE_FLIGHT_PARAM_FROM_CITY_CODE = "fromCityCode"
+    const val SEARCH_AVALIABLE_FLIGHT_PARAM_TO_CITY_CODE = "toCityCode"
+    const val SEARCH_AVALIABLE_FLIGHT_PARAM_DATE = "date"
+    const val SEARCH_AVALIABLE_FLIGHT_PARAM_PAGE = "page"
+    const val SEARCH_AVALIABLE_FLIGHT_PARAM_SIZE = "size"
 }

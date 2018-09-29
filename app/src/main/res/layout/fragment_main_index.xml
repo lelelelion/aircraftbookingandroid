@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/tvStartLocation"
         style="@style/activity_main_index_input_location_text_style"
-        android:text="大连"
+        android:text="@string/please_select"
         app:layout_constraintBottom_toBottomOf="@+id/imgRoundTrip"
         app:layout_constraintEnd_toStartOf="@+id/imgRoundTrip"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
     <TextView
         android:id="@+id/tvTargetLocation"
         style="@style/activity_main_index_input_location_text_style"
-        android:text="深圳"
+        android:text="@string/please_select"
         app:layout_constraintBottom_toTopOf="@+id/imgRoundTrip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgRoundTrip"
