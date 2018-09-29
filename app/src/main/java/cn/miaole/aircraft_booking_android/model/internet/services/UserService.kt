@@ -1,10 +1,7 @@
 package cn.miaole.aircraft_booking_android.model.internet.services
 
 import cn.miaole.aircraft_booking_android.model.internet.api.ApiInfo
-import cn.miaole.aircraft_booking_android.model.internet.data.LoginResponseData
-import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
-import cn.miaole.aircraft_booking_android.model.internet.data.RegisterResponseData
-import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
+import cn.miaole.aircraft_booking_android.model.internet.data.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -33,6 +30,11 @@ interface UserService {
             @Field(ApiInfo.REGISTER_PARAM_PHONE) phone: String
     ): Observable<ResponseBody<RegisterResponseData>>
 
+
+    @GET(ApiInfo.UPDATE_TOKEN_URL)
+    fun updateToken(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String
+    ): Observable<ResponseBody<UpdateTokenResponseData>>
 
     /**
      * 获取乘机人信息

@@ -6,6 +6,7 @@ import cn.miaole.aircraft_booking_android.model.internet.data.*
 import cn.miaole.aircraft_booking_android.model.internet.services.CommonService
 import cn.miaole.aircraft_booking_android.model.internet.services.LocationService
 import cn.miaole.aircraft_booking_android.model.internet.services.UserService
+import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import okhttp3.Interceptor
@@ -84,7 +85,7 @@ object APIManager {
     }
 
     private fun getCommonService(vararg factory: Converter.Factory): CommonService {
-        if(commonService == null)
+        if (commonService == null)
             commonService = createService(CommonService::class.java, *factory)
         return commonService!!
     }
@@ -160,6 +161,17 @@ object APIManager {
     }
 
     /**
+     * 更新失效的token
+     */
+    fun updateToken(): Observable<ResponseBody<UpdateTokenResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .updateToken(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken)
+                }
+    }
+
+    /**
      * 获取乘机人信息
      */
     fun getPassengerContacts(): Observable<ResponseBody<List<Passenger>>> {
@@ -190,8 +202,6 @@ object APIManager {
     }
 
 
-
-
     ///////////////////////////////////////////////////////////////////////
     /////////   通用API接口
     ///////////////////////////////////////////////////////////////////////
@@ -199,7 +209,7 @@ object APIManager {
     /**
      * 获取城市列表
      */
-    fun getCities(): Observable<ResponseBody<List<City>>>{
+    fun getCities(): Observable<ResponseBody<List<City>>> {
         return Observable.just(1)
                 .flatMap {
                     return@flatMap getCommonService(GsonConverterFactory.create())
