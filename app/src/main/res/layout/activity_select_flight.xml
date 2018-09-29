@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_grey"
+        android:orientation="vertical"
+        tools:context=".activitys.select_flight.SelectFlightActivity">
+
+        <include layout="@layout/bar_item" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="2dp">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/flight_smoke_m" />
+
+            <TextView
+                android:id="@+id/tvFlightNumberAndDateAndWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/aircraft_number_and_date_and_week"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:id="@+id/tvTurnOffTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:text="08:00"
+                android:textColor="@color/text_gray"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/img_arrow"
+                app:layout_constraintTop_toTopOf="@+id/img_arrow" />
+
+            <TextView
+                android:id="@+id/tvArriveTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="10:15"
+                android:textColor="@color/text_gray"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/img_arrow"
+                app:layout_constraintTop_toTopOf="@+id/img_arrow" />
+
+            <ImageView
+                android:id="@+id/img_arrow"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/swap_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvFromAirport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="首都T2"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/tvTurnOffTime"
+                app:layout_constraintStart_toEndOf="@+id/tvTurnOffTime"
+                app:layout_constraintTop_toBottomOf="@+id/tvTurnOffTime" />
+
+            <TextView
+                android:id="@+id/tvToAirport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="上海虹桥T2"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/tvArriveTime"
+                app:layout_constraintStart_toEndOf="@+id/tvArriveTime"
+                app:layout_constraintTop_toBottomOf="@+id/tvArriveTime" />
+
+            <ImageView
+                android:id="@+id/imgClock"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/tvDuration"
+                app:layout_constraintEnd_toStartOf="@+id/tvDuration"
+                app:layout_constraintTop_toBottomOf="@+id/tvDuration"
+                app:srcCompat="@drawable/time" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="2h15m"
+                app:layout_constraintEnd_toEndOf="@+id/img_arrow"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintStart_toStartOf="@+id/img_arrow"
+                app:layout_constraintTop_toTopOf="@+id/img_arrow" />
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <View
+                android:background="@color/colorPrimary"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:text="经济舱"
+                android:textColor="@color/text_gray"
+                android:paddingStart="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewEconomyCabin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <View
+                android:background="@color/colorPrimary"
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:text="商务舱"
+                android:textColor="@color/text_gray"
+                android:paddingStart="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewBusinessCabin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

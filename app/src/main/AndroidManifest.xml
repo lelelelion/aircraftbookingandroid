@@ -37,7 +37,8 @@
         <activity android:name=".activitys.passengers.PassengersActivity" />
         <activity android:name=".activitys.add_passenger.AddPassengerActivity" />
         <activity android:name=".activitys.place_select.PlaceSelectActivity" />
-        <activity android:name=".activitys.ticket_search_result.TicketSearchResultActivity"></activity>
+        <activity android:name=".activitys.ticket_search_result.TicketSearchResultActivity" />
+        <activity android:name=".activitys.select_flight.SelectFlightActivity"></activity>
     </application>
 
 </manifest>

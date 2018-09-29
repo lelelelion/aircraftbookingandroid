@@ -2,8 +2,12 @@ package cn.miaole.aircraft_booking_android.activitys.ticket_search_result
 
 import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.BaseRecyclerViewActivity
+import cn.miaole.aircraft_booking_android.activitys.select_flight.SelectFlightActivity
+import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.model.internet.data.City
 import cn.miaole.aircraft_booking_android.model.internet.data.SearchAvaliableFlightResponseData
+import cn.miaole.aircraft_booking_android.model.params.IntentParam
+import cn.miaole.aircraft_booking_android.utils.easyToJson
 import cn.miaole.aircraft_booking_android.utils.easyToObj
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
@@ -70,6 +74,13 @@ class TicketSearchResultActivity : BaseRecyclerViewActivity<TicketSearchResultAc
         adapter = TicketSearchResultAdapter(mutableListOf())
         adapter?.apply {
             bindToRecyclerView(recyclerView)
+            setOnItemClickListener { adapter, view, position ->
+                (adapter as TicketSearchResultAdapter).getItem(position)?.let {
+                    jumpTo(SelectFlightActivity::class.java, IntentParam()
+                            .add(SelectFlightActivity.PARAM_FLIGHT_INFO, it.easyToJson())
+                    )
+                }
+            }
         }
         //加载数据
         loadData(true)
