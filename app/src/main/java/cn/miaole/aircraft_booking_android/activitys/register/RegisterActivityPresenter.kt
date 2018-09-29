@@ -9,17 +9,17 @@ class RegisterActivityPresenter(val registerActivity: RegisterActivity)
         mView.registerFail(msg)
     }
 
-    override fun register(username: String, password: String, rePassword: String) {
-        if (username == "" || password == "" || rePassword == "")
+    override fun register(phone: String, password: String, rePassword: String) {
+        if (phone == "" || password == "" || rePassword == "")
             registerActivity.toast(R.string.please_complete_info)
         else if (password != rePassword)
             registerActivity.toast(R.string.twice_password_not_same)
         else
-            mModel.register(username, password)
+            mModel.register(phone, password)
     }
 
-    override fun registerSuccess(username: String, password: String) {
-        mView.registerSuccess(username, password)
+    override fun registerSuccess(phone: String, password: String) {
+        mView.registerSuccess(phone, password)
     }
 
     init {

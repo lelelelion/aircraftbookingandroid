@@ -1,5 +1,6 @@
 package cn.miaole.aircraft_booking_android.activitys.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import cn.miaole.aircraft_booking_android.R
@@ -9,14 +10,26 @@ import cn.miaole.aircraft_booking_android.activitys.main.MainActivity
 import cn.miaole.aircraft_booking_android.activitys.register.RegisterActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpForResult
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
+import cn.miaole.aircraft_booking_android.extensions.sendCode
 import cn.miaole.aircraft_booking_android.model.internet.data.LoginResponseData
+import cn.miaole.aircraft_booking_android.model.params.IntentParam
+import cn.miaole.aircraft_booking_android.utils.easyToJson
+import cn.smssdk.EventHandler
+import cn.smssdk.SMSSDK
+import cn.smssdk.gui.RegisterPage
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.bar_item.*
+import org.jetbrains.anko.design.snackbar
 
 class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(), LoginActivityContract.View {
+
+    companion object {
+        const val PARAM_PHONE = "phone"
+        const val PARAM_COUNTRY = "country"
+    }
 
     override fun loginSuccess(loginResponseData: LoginResponseData) {
         jumpTo(MainActivity::class.java)
@@ -41,7 +54,16 @@ class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(), LoginActivityCo
             jumpTo(ForgetPwdActivity::class.java)
         }
         tvRegisterNow.setOnClickListener {
-            jumpForResult(RegisterActivity::class.java, 0)
+            sendCode({
+                //验证失败
+                tvRegisterNow.snackbar(R.string.vertify_fail)
+            }) { phone, country ->
+                //验证成功
+                jumpForResult(RegisterActivity::class.java, 0, IntentParam()
+                        .add(PARAM_PHONE, phone)
+                        .add(PARAM_COUNTRY, country)
+                )
+            }
         }
 
         //登陆
@@ -52,7 +74,7 @@ class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(), LoginActivityCo
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
+        when (requestCode) {
             0 -> {          //注册成功的回调
                 Logger.i("Register Result")
                 data?.apply {

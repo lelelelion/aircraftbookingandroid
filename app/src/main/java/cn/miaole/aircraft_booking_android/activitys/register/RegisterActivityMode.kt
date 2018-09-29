@@ -7,13 +7,13 @@ import cn.miaole.aircraft_booking_android.model.internet.rx.RxResultHelper
 import cn.miaole.aircraft_booking_android.utils.RxSchedulersHelper
 
 class RegisterActivityMode(val mPresenter: RegisterActivityPresenter) : RegisterActivityContract.Model {
-    override fun register(username: String, password: String) {
-        APIManager.register(username, password)
+    override fun register(phone: String, password: String) {
+        APIManager.register(username = phone, password = password, phone = phone)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
                 .subscribe(object : RxObserver<RegisterResponseData>() {
                     override fun _onNext(t: RegisterResponseData) {
-                        mPresenter.registerSuccess(username, password)
+                        mPresenter.registerSuccess(phone, password)
                     }
 
                     override fun _onError(msg: String) {
