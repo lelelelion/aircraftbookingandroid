@@ -85,6 +85,17 @@ interface UserService {
     @POST(ApiInfo.DELETE_PASSENGER_CONTACT_URL)
     fun deletePassengerContact(
             @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
-            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_ID) id: String
+            @Field(ApiInfo.DELETE_PASSENGER_CONTACT_PARAM_ID) id: String
     ): Observable<ResponseBody<EmptyResponseData>>
+
+
+    /**
+     * 获取订单列表
+     */
+    @GET(ApiInfo.GET_ORDERS_URL)
+    fun getOrders(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Query(ApiInfo.GET_ORDERS_PARAM_PAGE) page: Int,
+            @Query(ApiInfo.GET_ORDERS_PARAM_SIZE) size: Int
+    ): Observable<ResponseBody<List<GetOrdersResponseData>>>
 }

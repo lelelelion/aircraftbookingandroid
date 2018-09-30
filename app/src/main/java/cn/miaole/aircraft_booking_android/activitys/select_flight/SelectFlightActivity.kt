@@ -8,6 +8,7 @@ import cn.miaole.aircraft_booking_android.activitys.booking.BookingActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.model.internet.data.SearchAvaliableFlightResponseData
 import cn.miaole.aircraft_booking_android.model.params.IntentParam
+import cn.miaole.aircraft_booking_android.utils.DateUtil
 import cn.miaole.aircraft_booking_android.utils.easyToJson
 import cn.miaole.aircraft_booking_android.utils.easyToObj
 import cn.miaole.aircraft_booking_android.views.easy_refresh.CustomLinerLayoutManager
@@ -54,7 +55,7 @@ class SelectFlightActivity : MVPBaseActivity<SelectFlightActivityPresenter>(),
                     flightInfo.aircraft.flightNumber, "${instance.get(Calendar.YEAR)}" +
                     "-${instance.get(Calendar.MONTH) + 1}" +
                     "-${instance.get(Calendar.DAY_OF_MONTH)}",
-                    getChineseWeek(instance.get(Calendar.DAY_OF_WEEK)))
+                    DateUtil.getChineseWeek(instance.get(Calendar.DAY_OF_WEEK)))
             tvTurnOffTime.text = flightInfo.departTime
             tvArriveTime.text = flightInfo.arrivalTime
             tvFromAirport.text = "${flightInfo.departAirport.name}${flightInfo.fromTerminal}"
@@ -104,18 +105,5 @@ class SelectFlightActivity : MVPBaseActivity<SelectFlightActivityPresenter>(),
         }
     }
 
-    private fun getChineseWeek(week: Int): String {
-        return when (week) {
-            1 -> "日"
-            2 -> "一"
-            3 -> "二"
-            4 -> "三"
-            5 -> "四"
-            6 -> "五"
-            7 -> "六"
-            else -> {
-                "一"
-            }
-        }
-    }
+
 }

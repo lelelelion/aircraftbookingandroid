@@ -245,6 +245,18 @@ object APIManager {
     }
 
 
+    /**
+     * 获取订单列表
+     */
+    fun getOrders(page: Int, size: Int): Observable<ResponseBody<List<GetOrdersResponseData>>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .getOrders(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    page, size)
+                }
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////// 航班相关接口
     //////////////////////////////////////////////////////////////////////
@@ -265,7 +277,7 @@ object APIManager {
      * 生成订单
      */
     fun generateOrder(ticketId: String, passengers: ArrayList<String>, name: String,
-             phone: String, email: String = ""): Observable<ResponseBody<EmptyResponseData>>{
+                      phone: String, email: String = ""): Observable<ResponseBody<EmptyResponseData>> {
         return Observable.just(1)
                 .flatMap {
                     return@flatMap getFlightService(GsonConverterFactory.create())

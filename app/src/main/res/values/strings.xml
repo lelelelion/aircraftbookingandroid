@@ -69,4 +69,6 @@
     <string name="please_add_passenger">请添加乘机人</string>
     <string name="generate_order_success">下单成功</string>
     <string name="generate_order_fail">下单失败</string>
+    <string name="delete_order">删除订单</string>
+    <string name="total_price">合计：¥%1$s</string>
 </resources>

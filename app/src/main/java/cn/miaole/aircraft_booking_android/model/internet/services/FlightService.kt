@@ -36,4 +36,5 @@ interface FlightService {
             @Field(ApiInfo.GENERATE_ORDER_PARAM_PHONE) phone: String,
             @Field(ApiInfo.GENERATE_ORDER_PARAM_EMAIL) email: String
     ): Observable<ResponseBody<EmptyResponseData>>
+
 }

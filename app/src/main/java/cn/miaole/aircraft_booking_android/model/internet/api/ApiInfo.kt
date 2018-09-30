@@ -91,6 +91,11 @@ object ApiInfo {
     const val DELETE_PASSENGER_CONTACT_URL = "/deletePassengerContact"
     const val DELETE_PASSENGER_CONTACT_PARAM_ID = "id"
 
+    //获取订单列表
+    const val GET_ORDERS_URL = "/getOrders"
+    const val GET_ORDERS_PARAM_PAGE = "page"
+    const val GET_ORDERS_PARAM_SIZE = "size"
+
 
     /**********************************************************************
      *
@@ -121,4 +126,6 @@ object ApiInfo {
     const val GENERATE_ORDER_PARAM_CONTACT_NAME = "contactName"
     const val GENERATE_ORDER_PARAM_PHONE = "phone"
     const val GENERATE_ORDER_PARAM_EMAIL = "email"
+
+
 }
