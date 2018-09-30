@@ -6,6 +6,8 @@ import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
 import cn.miaole.aircraft_booking_android.activitys.booking.BookingActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
+import cn.miaole.aircraft_booking_android.extensions.snackLoginTip
+import cn.miaole.aircraft_booking_android.model.ABAApi
 import cn.miaole.aircraft_booking_android.model.internet.data.SearchAvaliableFlightResponseData
 import cn.miaole.aircraft_booking_android.model.params.IntentParam
 import cn.miaole.aircraft_booking_android.utils.DateUtil
@@ -16,6 +18,7 @@ import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_select_flight.*
 import kotlinx.android.synthetic.main.bar_item.*
+import org.jetbrains.anko.design.snackbar
 import java.util.*
 
 class SelectFlightActivity : MVPBaseActivity<SelectFlightActivityPresenter>(),
@@ -67,15 +70,20 @@ class SelectFlightActivity : MVPBaseActivity<SelectFlightActivityPresenter>(),
         economyCabinAdapter.bindToRecyclerView(recyclerViewEconomyCabin)
         recyclerViewEconomyCabin.layoutManager = CustomLinerLayoutManager(this)
         economyCabinAdapter.setOnItemChildClickListener { adapter, view, position ->
-            when(view.id){
+            when (view.id) {
                 R.id.btnBooking -> {
-                    (adapter as TicketAdapter).getItem(position)
-                            ?.let {
-                                jumpTo(BookingActivity::class.java, IntentParam()
-                                        .add(BookingActivity.PARAM_FLIGHT_INFO, flightInfo.easyToJson())
-                                        .add(BookingActivity.PARAM_TICKET_INFO, it.easyToJson())
-                                )
-                            }
+                    if (ABAApi.isLogin) {
+                        (adapter as TicketAdapter).getItem(position)
+                                ?.let {
+                                    jumpTo(BookingActivity::class.java, IntentParam()
+                                            .add(BookingActivity.PARAM_FLIGHT_INFO, flightInfo.easyToJson())
+                                            .add(BookingActivity.PARAM_TICKET_INFO, it.easyToJson())
+                                    )
+                                }
+                    } else {
+                        this.snackLoginTip(easyBar)
+                    }
+
                 }
             }
         }
@@ -84,15 +92,19 @@ class SelectFlightActivity : MVPBaseActivity<SelectFlightActivityPresenter>(),
         businessCabinAdapter.bindToRecyclerView(recyclerViewBusinessCabin)
         recyclerViewBusinessCabin.layoutManager = CustomLinerLayoutManager(this)
         businessCabinAdapter.setOnItemChildClickListener { adapter, view, position ->
-            when(view.id){
+            when (view.id) {
                 R.id.btnBooking -> {
-                    (adapter as TicketAdapter).getItem(position)
-                            ?.let {
-                                jumpTo(BookingActivity::class.java, IntentParam()
-                                        .add(BookingActivity.PARAM_FLIGHT_INFO, flightInfo.easyToJson())
-                                        .add(BookingActivity.PARAM_TICKET_INFO, it.easyToJson())
-                                )
-                            }
+                    if (ABAApi.isLogin) {
+                        (adapter as TicketAdapter).getItem(position)
+                                ?.let {
+                                    jumpTo(BookingActivity::class.java, IntentParam()
+                                            .add(BookingActivity.PARAM_FLIGHT_INFO, flightInfo.easyToJson())
+                                            .add(BookingActivity.PARAM_TICKET_INFO, it.easyToJson())
+                                    )
+                                }
+                    } else {
+                        this.snackLoginTip(easyBar)
+                    }
                 }
             }
         }

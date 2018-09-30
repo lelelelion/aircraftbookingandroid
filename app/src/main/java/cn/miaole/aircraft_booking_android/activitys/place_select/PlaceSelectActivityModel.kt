@@ -17,7 +17,7 @@ class PlaceSelectActivityModel(val mPresenter: PlaceSelectActivityPresenter)
                 .getCities()
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<List<City>>() {
+                .subscribe(object : RxObserver<List<City>>(mPresenter) {
                     override fun _onNext(t: List<City>) {
                         mPresenter.getCitiesSuccess(t)
                     }

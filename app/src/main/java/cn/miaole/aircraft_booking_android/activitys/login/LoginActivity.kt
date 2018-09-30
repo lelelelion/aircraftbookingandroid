@@ -80,6 +80,10 @@ class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(), LoginActivityCo
                 data?.apply {
                     val username = getStringExtra(RegisterActivity.REGISTER_USERNAME)
                     val password = getStringExtra(RegisterActivity.REGISTER_PASSWORD)
+                    if(username == "" || password == ""){
+                        btnRegister.snackbar(R.string.please_complete_info)
+                        return@apply
+                    }
                     etUsername.setText(username)
                     etPassword.setText(password)
                 }

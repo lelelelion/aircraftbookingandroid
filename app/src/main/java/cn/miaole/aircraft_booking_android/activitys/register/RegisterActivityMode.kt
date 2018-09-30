@@ -11,7 +11,7 @@ class RegisterActivityMode(val mPresenter: RegisterActivityPresenter) : Register
         APIManager.register(username = phone, password = password, phone = phone)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<RegisterResponseData>() {
+                .subscribe(object : RxObserver<RegisterResponseData>(mPresenter) {
                     override fun _onNext(t: RegisterResponseData) {
                         mPresenter.registerSuccess(phone, password)
                     }

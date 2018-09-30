@@ -67,7 +67,7 @@ class MainActivity : MVPBaseActivity<MainActivityPresenter>(), MainActivityContr
                 Logger.i("network location change: (${location.latitude}, ${location.longitude})")
                 APIManager.getLocationInfo(location.latitude, location.longitude)
                         .compose(RxSchedulersHelper.io_main())
-                        .subscribe(object : RxObserver<LocationInfo>(){
+                        .subscribe(object : RxObserver<LocationInfo>(mPresenter){
                             override fun _onNext(t: LocationInfo) {
                                 Logger.i(t.easyToJson())
                                 toast(t.result.formatted_address)

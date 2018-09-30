@@ -10,6 +10,7 @@ import cn.miaole.aircraft_booking_android.activitys.my_trip.MyTripActivity
 import cn.miaole.aircraft_booking_android.activitys.passengers.PassengersActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.extensions.loadCircle
+import cn.miaole.aircraft_booking_android.extensions.snackLoginTip
 import cn.miaole.aircraft_booking_android.model.ABAApi
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
@@ -43,7 +44,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
         mPresenter.getUserInfo()
     }
 
-    private fun fillInUserInfo(){
+    private fun fillInUserInfo() {
         tvUsername.post {
             if (ABAApi.isLogin) {
                 ABAApi.userInfo?.apply {
@@ -57,6 +58,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
                 }
             } else {
                 tvUsername.setText(R.string.click_here_to_login)
+                tvRemainMoney.text = getString(R.string.remain_money, "0")
                 imgAvatar.loadCircle(R.drawable.blue_thumb)
             }
         }
@@ -79,13 +81,22 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
         }
 
         lmiMyOrder.setOnClickListener {
-            //我的订单
-            activity?.jumpTo(MyOrderActivity::class.java)
+            if (ABAApi.isLogin) {
+                //我的订单
+                activity?.jumpTo(MyOrderActivity::class.java)
+            } else {
+                activity?.snackLoginTip(easyBar)
+            }
+
         }
 
         lmiMyTrip.setOnClickListener {
-            //我的行程
-            activity?.jumpTo(MyTripActivity::class.java)
+            if (ABAApi.isLogin) {
+                //我的行程
+                activity?.jumpTo(MyTripActivity::class.java)
+            } else {
+                activity?.snackLoginTip(easyBar)
+            }
         }
 
         lmiAboutUs.setOnClickListener {
@@ -98,7 +109,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
                 //乘机人信息
                 activity?.jumpTo(PassengersActivity::class.java)
             } else {
-                lmiPassengerInfo.snackbar(R.string.please_login_first)
+                activity?.snackLoginTip(easyBar)
             }
 
         }

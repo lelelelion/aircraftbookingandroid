@@ -15,7 +15,7 @@ class BookingActivityModel(val mPresenter: BookingActivityPresenter)
                 .generateOrder(ticketId, passengers, name, phone, email)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<EmptyResponseData>() {
+                .subscribe(object : RxObserver<EmptyResponseData>(mPresenter) {
                     override fun _onNext(t: EmptyResponseData) {
                         mPresenter.generateOrderSuccess()
                     }
@@ -32,7 +32,7 @@ class BookingActivityModel(val mPresenter: BookingActivityPresenter)
                 .getPassengerContacts()
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<List<Passenger>>() {
+                .subscribe(object : RxObserver<List<Passenger>>(mPresenter) {
                     override fun _onNext(t: List<Passenger>) {
                         mPresenter.loadPassengersSuccess(t)
                     }

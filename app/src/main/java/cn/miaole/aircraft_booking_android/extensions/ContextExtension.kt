@@ -12,12 +12,16 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import cn.miaole.aircraft_booking_android.R
+import cn.miaole.aircraft_booking_android.activitys.login.LoginActivity
 import cn.miaole.aircraft_booking_android.model.params.IntentParam
 import cn.miaole.aircraft_booking_android.utils.easyToJson
 import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
 import cn.smssdk.gui.RegisterPage
 import com.orhanobut.logger.Logger
+import org.jetbrains.anko.design.longSnackbar
+import org.jetbrains.anko.design.snackbar
 import java.util.*
 
 fun Context.toast(info: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -96,8 +100,8 @@ fun Context.showSelectDateDialog(@StyleRes style: Int = android.R.style.Theme_De
 }
 
 
-fun Context.checkMyPermission(permission: String, granted: () -> Unit = {}, deny: () -> Unit = {}){
-    if(ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED){
+fun Context.checkMyPermission(permission: String, granted: () -> Unit = {}, deny: () -> Unit = {}) {
+    if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
         granted()
     } else {
         deny()
@@ -109,12 +113,12 @@ fun Context.checkMyPermission(permission: String, granted: () -> Unit = {}, deny
  * 打开发送短信验证界面
  */
 fun Context.sendCode(fail: () -> Unit = {},
-                     success: (phone: String, country: String) -> Unit = {phone, country -> }) {
+                     success: (phone: String, country: String) -> Unit = { phone, country -> }) {
     val page = RegisterPage()
     page.setTempCode(null)
-    page.setRegisterCallback(object : EventHandler(){
+    page.setRegisterCallback(object : EventHandler() {
         override fun afterEvent(event: Int, result: Int, data: Any?) {
-            if(result == SMSSDK.RESULT_COMPLETE) {
+            if (result == SMSSDK.RESULT_COMPLETE) {
                 // 处理成功的结果
                 val phoneMap = data as HashMap<*, *>
                 val country = phoneMap["country"] as String // 国家代码，如“86”
@@ -128,4 +132,14 @@ fun Context.sendCode(fail: () -> Unit = {},
         }
     })
     page.show(this)
+}
+
+
+/**
+ * 提示用户登陆的Snackbar
+ */
+fun Context.snackLoginTip(v: View) {
+    v.longSnackbar(R.string.please_login_first, R.string.login, action = {
+        jumpTo(LoginActivity::class.java)
+    })
 }

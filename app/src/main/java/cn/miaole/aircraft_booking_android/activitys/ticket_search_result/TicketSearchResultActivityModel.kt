@@ -14,7 +14,7 @@ class TicketSearchResultActivityModel(val mPresenter: TicketSearchResultActivity
                 .searchAvailableFlight(fromCityCode, toCityCode, date, page, size)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<List<SearchAvaliableFlightResponseData>>() {
+                .subscribe(object : RxObserver<List<SearchAvaliableFlightResponseData>>(mPresenter) {
                     override fun _onNext(t: List<SearchAvaliableFlightResponseData>) {
                         mPresenter.searchAvailableFlightSuccess(t, isRefresh)
                     }

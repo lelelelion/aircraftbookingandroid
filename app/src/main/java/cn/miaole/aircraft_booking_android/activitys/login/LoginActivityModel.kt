@@ -17,7 +17,7 @@ class LoginActivityModel(val mPresenter: LoginActivityPresenter)
                 .login(username, password)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<LoginResponseData>() {
+                .subscribe(object : RxObserver<LoginResponseData>(mPresenter) {
                     override fun _onNext(t: LoginResponseData) {
                         //更新token
                         ABAApi.updateAuthorizationToken(t.token)

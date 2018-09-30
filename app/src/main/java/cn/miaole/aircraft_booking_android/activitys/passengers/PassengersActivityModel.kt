@@ -14,7 +14,7 @@ class PassengersActivityModel(val mPresenter: PassengersActivityPresenter)
                 .deletePassengerContact(passenger.id)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<EmptyResponseData>() {
+                .subscribe(object : RxObserver<EmptyResponseData>(mPresenter) {
                     override fun _onNext(t: EmptyResponseData) {
                         mPresenter.deletePassengerSuccess(passenger)
                     }
@@ -26,7 +26,7 @@ class PassengersActivityModel(val mPresenter: PassengersActivityPresenter)
                 .getPassengerContacts()
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<List<Passenger>>() {
+                .subscribe(object : RxObserver<List<Passenger>>(mPresenter) {
                     override fun _onNext(t: List<Passenger>) {
                         mPresenter.loadPassengersSuccess(t, isRefresh)
                     }

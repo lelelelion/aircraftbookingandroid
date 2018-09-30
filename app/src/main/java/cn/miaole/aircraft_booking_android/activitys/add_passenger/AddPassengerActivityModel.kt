@@ -14,7 +14,7 @@ class AddPassengerActivityModel(val mPresenter: AddPassengerActivityPresenter)
                 .updatePassengerContact(id, name, certificateType, certificateValue, isAdult, phone, email)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<Passenger>() {
+                .subscribe(object : RxObserver<Passenger>(mPresenter) {
                     override fun _onNext(t: Passenger) {
                         mPresenter.updatePassengerSuccess(t)
                     }
@@ -27,7 +27,7 @@ class AddPassengerActivityModel(val mPresenter: AddPassengerActivityPresenter)
                 .addPassengerContact(name, certificateType, certificateValue, isAdult, phone, email)
                 .compose(RxSchedulersHelper.io_main())
                 .compose(RxResultHelper.handleResult())
-                .subscribe(object : RxObserver<Passenger>() {
+                .subscribe(object : RxObserver<Passenger>(mPresenter) {
                     override fun _onNext(t: Passenger) {
                         mPresenter.addPassengerSuccess(passenger = t)
                     }

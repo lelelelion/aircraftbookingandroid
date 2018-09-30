@@ -4,6 +4,7 @@ import cn.miaole.aircraft_booking_android.model.ABAApi
 import cn.miaole.aircraft_booking_android.model.internet.api.APIManager
 import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
 import cn.miaole.aircraft_booking_android.model.internet.exceptions.JWTExpireException
+import cn.miaole.aircraft_booking_android.model.internet.exceptions.NotLoginException
 import cn.miaole.aircraft_booking_android.model.internet.exceptions.OtherServerException
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
@@ -20,6 +21,9 @@ class RxResultHelper {
 
                             //JWT 令牌失效
                             -3 -> return@flatMap Observable.error(JWTExpireException(result.msg))
+
+                            //未登陆
+                            -4 -> return@flatMap Observable.error(NotLoginException(result.msg))
 
                             else -> return@flatMap Observable.empty<T>()
                         }
