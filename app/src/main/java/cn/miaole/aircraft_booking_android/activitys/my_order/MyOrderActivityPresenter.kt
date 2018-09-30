@@ -1,14 +1,14 @@
 package cn.miaole.aircraft_booking_android.activitys.my_order
 
-import cn.miaole.aircraft_booking_android.model.internet.data.GetOrdersResponseData
+import cn.miaole.aircraft_booking_android.model.internet.data.Order
 
 class MyOrderActivityPresenter(myOrderActivity: MyOrderActivity)
     : MyOrderActivityContract.Presenter() {
-    override fun deleteOrder(order: GetOrdersResponseData) {
+    override fun deleteOrder(order: Order) {
         mModel.deleteOrder(order)
     }
 
-    override fun deleteOrderSuccess(order: GetOrdersResponseData) {
+    override fun deleteOrderSuccess(order: Order) {
         mView.deleteOrderSuccess(order)
     }
 
@@ -16,7 +16,7 @@ class MyOrderActivityPresenter(myOrderActivity: MyOrderActivity)
         mModel.getOrders(page, size, isRefresh)
     }
 
-    override fun getOrdersSuccess(data: List<GetOrdersResponseData>, isRefresh: Boolean) {
+    override fun getOrdersSuccess(data: List<Order>, isRefresh: Boolean) {
         mView.getOrdersSuccess(data, isRefresh)
     }
 

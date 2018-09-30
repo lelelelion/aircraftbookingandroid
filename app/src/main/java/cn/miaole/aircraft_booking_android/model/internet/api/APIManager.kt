@@ -7,7 +7,6 @@ import cn.miaole.aircraft_booking_android.model.internet.services.CommonService
 import cn.miaole.aircraft_booking_android.model.internet.services.FlightService
 import cn.miaole.aircraft_booking_android.model.internet.services.LocationService
 import cn.miaole.aircraft_booking_android.model.internet.services.UserService
-import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import okhttp3.Interceptor
@@ -17,8 +16,6 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.Header
 import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
 
@@ -248,7 +245,7 @@ object APIManager {
     /**
      * 获取订单列表
      */
-    fun getOrders(page: Int, size: Int): Observable<ResponseBody<List<GetOrdersResponseData>>> {
+    fun getOrders(page: Int, size: Int): Observable<ResponseBody<List<Order>>> {
         return Observable.just(1)
                 .flatMap {
                     return@flatMap getUserService(GsonConverterFactory.create())
@@ -289,6 +286,18 @@ object APIManager {
                 .flatMap {
                     return@flatMap getUserService(GsonConverterFactory.create())
                             .forgetPassword(phone, newPassword, code, zone)
+                }
+    }
+
+    /**
+     * 获取行程
+     */
+    fun getTrtips(page: Int, size: Int): Observable<ResponseBody<List<Order>>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .getTrips(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    page, size)
                 }
     }
 

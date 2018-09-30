@@ -10,7 +10,7 @@ import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivit
 import cn.miaole.aircraft_booking_android.activitys.booking.BookingPassengerAdapter
 import cn.miaole.aircraft_booking_android.extensions.toast
 import cn.miaole.aircraft_booking_android.model.internet.data.Flight
-import cn.miaole.aircraft_booking_android.model.internet.data.GetOrdersResponseData
+import cn.miaole.aircraft_booking_android.model.internet.data.Order
 import cn.miaole.aircraft_booking_android.utils.DateUtil
 import cn.miaole.aircraft_booking_android.utils.easyToObj
 import com.j.ming.easybar2.EasyBar
@@ -46,7 +46,7 @@ class OrderDetailActivity : MVPBaseActivity<OrderDetailActivityPresenter>(),
         initView()
     }
 
-    private lateinit var getOrdersResponseData: GetOrdersResponseData
+    private lateinit var getOrdersResponseData: Order
     private lateinit var flightInfo: Flight
     private lateinit var adapter: BookingPassengerAdapter
 
@@ -58,7 +58,7 @@ class OrderDetailActivity : MVPBaseActivity<OrderDetailActivityPresenter>(),
 
         intent.apply {
             getOrdersResponseData = getStringExtra(PARAM_GET_ORDERS_RESPONSE_DATA)
-                    .easyToObj(GetOrdersResponseData::class.java)
+                    .easyToObj(Order::class.java)
             flightInfo = getOrdersResponseData.Ticket.Flight
             val instance = Calendar.getInstance()
             instance.timeInMillis = getOrdersResponseData.Ticket.effectDate

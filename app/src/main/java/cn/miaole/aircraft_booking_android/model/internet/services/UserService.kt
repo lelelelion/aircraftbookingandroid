@@ -97,7 +97,7 @@ interface UserService {
             @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
             @Query(ApiInfo.GET_ORDERS_PARAM_PAGE) page: Int,
             @Query(ApiInfo.GET_ORDERS_PARAM_SIZE) size: Int
-    ): Observable<ResponseBody<List<GetOrdersResponseData>>>
+    ): Observable<ResponseBody<List<Order>>>
 
     /**
      * 删除订单
@@ -129,4 +129,14 @@ interface UserService {
             @Field(ApiInfo.FORGET_PASSWORD_PARAM_CODE) code: String,
             @Field(ApiInfo.FORGET_PASSWORD_PARAM_ZONE) zone: String
     ): Observable<ResponseBody<EmptyResponseData>>
+
+    /**
+     * 获取我的行程
+     */
+    @GET(ApiInfo.GET_TRIPS_URL)
+    fun getTrips(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Query(ApiInfo.GET_TRIPS_PARAM_PAGE) page: Int,
+            @Query(ApiInfo.GET_TRIPS_PARAM_SIZE) size: Int
+    ): Observable<ResponseBody<List<Order>>>
 }

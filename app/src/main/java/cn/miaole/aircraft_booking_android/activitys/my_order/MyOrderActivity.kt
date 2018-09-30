@@ -1,13 +1,11 @@
 package cn.miaole.aircraft_booking_android.activitys.my_order
 
 import android.content.Intent
-import android.os.Bundle
 import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.BaseRecyclerViewActivity
 import cn.miaole.aircraft_booking_android.activitys.order_detail.OrderDetailActivity
 import cn.miaole.aircraft_booking_android.extensions.jumpForResult
-import cn.miaole.aircraft_booking_android.extensions.jumpTo
-import cn.miaole.aircraft_booking_android.model.internet.data.GetOrdersResponseData
+import cn.miaole.aircraft_booking_android.model.internet.data.Order
 import cn.miaole.aircraft_booking_android.model.params.IntentParam
 import cn.miaole.aircraft_booking_android.utils.easyToJson
 import com.j.ming.easybar2.EasyBar
@@ -16,18 +14,17 @@ import kotlinx.android.synthetic.main.activity_booking.*
 import kotlinx.android.synthetic.main.bar_item.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
 class MyOrderActivity : BaseRecyclerViewActivity<MyOrderActivityPresenter>(),
         MyOrderActivityContract.View {
-    override fun deleteOrderSuccess(order: GetOrdersResponseData) {
+    override fun deleteOrderSuccess(order: Order) {
         (adapter as MyOrderAdapter).apply {
             remove(data.indexOf(order))
         }
     }
 
-    override fun getOrdersSuccess(data: List<GetOrdersResponseData>, isRefresh: Boolean) {
+    override fun getOrdersSuccess(data: List<Order>, isRefresh: Boolean) {
         (adapter as MyOrderAdapter).apply {
             if (isRefresh)
                 this.data.clear()

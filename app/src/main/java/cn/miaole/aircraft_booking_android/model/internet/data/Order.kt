@@ -1,7 +1,7 @@
 package cn.miaole.aircraft_booking_android.model.internet.data
 
 
-data class GetOrdersResponseData(
+data class Order(
     val contactName: String,
     val phone: String,
     val email: String,

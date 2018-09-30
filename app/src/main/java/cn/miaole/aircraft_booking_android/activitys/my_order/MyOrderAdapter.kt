@@ -1,15 +1,15 @@
 package cn.miaole.aircraft_booking_android.activitys.my_order
 
 import cn.miaole.aircraft_booking_android.R
-import cn.miaole.aircraft_booking_android.model.internet.data.GetOrdersResponseData
+import cn.miaole.aircraft_booking_android.model.internet.data.Order
 import cn.miaole.aircraft_booking_android.utils.DateUtil
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import java.util.*
 
-class MyOrderAdapter(list: MutableList<GetOrdersResponseData>) :
-        BaseQuickAdapter<GetOrdersResponseData, BaseViewHolder>(R.layout.item_order, list) {
-    override fun convert(helper: BaseViewHolder?, item: GetOrdersResponseData?) {
+class MyOrderAdapter(list: MutableList<Order>) :
+        BaseQuickAdapter<Order, BaseViewHolder>(R.layout.item_order, list) {
+    override fun convert(helper: BaseViewHolder?, item: Order?) {
         helper?.let { holder ->
             item?.let { item ->
                 val instance = Calendar.getInstance()
