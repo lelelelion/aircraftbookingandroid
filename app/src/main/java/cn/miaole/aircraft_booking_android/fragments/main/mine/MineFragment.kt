@@ -18,6 +18,10 @@ import kotlinx.android.synthetic.main.fragment_main_mine.*
 import org.jetbrains.anko.design.snackbar
 
 class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContract.View {
+    override fun getUserInfoSuccess() {
+        fillInUserInfo()
+    }
+
     override fun logoutSuccess() {
         activity?.apply {
             jumpTo(LoginActivity::class.java)
@@ -35,6 +39,11 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
 
     override fun onResume() {
         super.onResume()
+        fillInUserInfo()
+        mPresenter.getUserInfo()
+    }
+
+    private fun fillInUserInfo(){
         tvUsername.post {
             if (ABAApi.isLogin) {
                 ABAApi.userInfo?.apply {
@@ -44,6 +53,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
                     else
                         ""
                     imgAvatar.loadCircle(str)
+                    tvRemainMoney.text = getString(R.string.remain_money, money.toString())
                 }
             } else {
                 tvUsername.setText(R.string.click_here_to_login)
@@ -61,7 +71,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
         easyBar.init(mode = EasyBar.Mode.NONE, titleRes = R.string.mine)
 
         clUser.setOnClickListener {
-            if(ABAApi.isLogin){
+            if (ABAApi.isLogin) {
 
             } else {
                 activity?.jumpTo(LoginActivity::class.java)
@@ -84,7 +94,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
         }
 
         lmiPassengerInfo.setOnClickListener {
-            if(ABAApi.isLogin){
+            if (ABAApi.isLogin) {
                 //乘机人信息
                 activity?.jumpTo(PassengersActivity::class.java)
             } else {

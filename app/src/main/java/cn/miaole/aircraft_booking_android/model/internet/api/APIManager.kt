@@ -269,6 +269,17 @@ object APIManager {
                 }
     }
 
+    /**
+     * 获取用户信息
+     */
+    fun getUserInfo(): Observable<ResponseBody<User>>{
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .getUserInfo(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken)
+                }
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////// 航班相关接口
     //////////////////////////////////////////////////////////////////////

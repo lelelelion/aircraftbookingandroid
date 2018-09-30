@@ -108,4 +108,13 @@ interface UserService {
             @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
             @Field(ApiInfo.DELETE_ORDER_PARAM_ORDER_ID) orderId: String
     ): Observable<ResponseBody<EmptyResponseData>>
+
+
+    /**
+     * 获取用户信息
+     */
+    @GET(ApiInfo.GET_USER_INFO_URL)
+    fun getUserInfo(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String
+    ): Observable<ResponseBody<User>>
 }
