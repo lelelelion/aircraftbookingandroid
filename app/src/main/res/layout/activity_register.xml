@@ -10,20 +10,6 @@
         android:id="@+id/include2"
         layout="@layout/bar_item" />
 
-    <!--<cn.miaole.aircraft_booking_android.views.ClearAbleEditText-->
-        <!--android:id="@+id/etUsername"-->
-        <!--style="@style/login_et_style"-->
-        <!--android:layout_marginTop="50dp"-->
-        <!--android:hint="@string/username"-->
-        <!--app:drawable_height="30dp"-->
-        <!--app:drawable_width="30dp"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/include2"-->
-        <!--app:left_drawable="@drawable/mine"-->
-        <!--app:right_drawable="@drawable/delete"-->
-        <!--app:right_drawable_height="20dp"-->
-        <!--app:right_drawable_width="20dp" />-->
 
     <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
         android:id="@+id/etPassword"

@@ -280,6 +280,18 @@ object APIManager {
                 }
     }
 
+    /**
+     * 忘记密码
+     */
+    fun forgetPassword(phone: String, newPassword: String, code: String, zone: String):
+            Observable<ResponseBody<EmptyResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .forgetPassword(phone, newPassword, code, zone)
+                }
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////// 航班相关接口
     //////////////////////////////////////////////////////////////////////

@@ -63,6 +63,13 @@ object ApiInfo {
     const val MODIFY_PASSWORD_PARAM_OLD_PASSWORD = "oldPassword"
     const val MODIFY_PASSWORD_PARAM_NEW_PASSWORD = "newPassword"
 
+    //忘记密码
+    const val FORGET_PASSWORD_URL = "/forgetPassword"
+    const val FORGET_PASSWORD_PARAM_PHONE = "phone"
+    const val FORGET_PASSWORD_PARAM_NEW_PASSWORD = "newPassword"
+    const val FORGET_PASSWORD_PARAM_CODE = "code"
+    const val FORGET_PASSWORD_PARAM_ZONE = "zone"
+
     //添加乘机人信息
     const val ADD_PASSENGER_CONTACT_URL = "/addPassengerContact"
     const val ADD_PASSENGER_CONTACT_PARAM_NAME = "name"

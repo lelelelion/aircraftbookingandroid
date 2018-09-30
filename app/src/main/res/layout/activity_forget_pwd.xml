@@ -1,30 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".activitys.forget_pwd.ForgetPwdActivity">
 
     <include
         android:id="@+id/include2"
         layout="@layout/bar_item" />
 
-    <TextView
-        android:id="@+id/textView"
+    <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
+        android:id="@+id/etPhone"
+        style="@style/login_et_style"
+        android:hint="@string/phone_number"
+        android:layout_marginTop="25dp"
+        app:left_drawable="@drawable/mine"
+        app:drawable_width="30dp"
+        app:drawable_height="30dp"
+        app:right_drawable_width="20dp"
+        app:right_drawable_height="20dp"
+        android:inputType="number"
+        app:right_drawable="@drawable/delete"
+        />
+
+    <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
+        android:id="@+id/etPassword"
+        style="@style/login_et_style"
+        android:hint="@string/new_password"
+        android:layout_marginTop="25dp"
+        app:left_drawable="@drawable/password"
+        app:drawable_width="30dp"
+        app:drawable_height="30dp"
+        app:right_drawable_width="20dp"
+        app:right_drawable_height="20dp"
+        android:inputType="textPassword"
+        app:right_drawable="@drawable/delete"
+        />
+
+    <cn.miaole.aircraft_booking_android.views.ClearAbleEditText
+        android:id="@+id/etRePassword"
+        style="@style/login_et_style"
+        android:hint="@string/confirm_password"
+        android:layout_marginTop="25dp"
+        app:left_drawable="@drawable/password"
+        app:drawable_width="30dp"
+        app:drawable_height="30dp"
+        app:right_drawable_width="20dp"
+        app:right_drawable_height="20dp"
+        android:inputType="textPassword"
+        app:right_drawable="@drawable/delete"
+        />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        >
+        <EditText
+            android:id="@+id/etVertifyCode"
+            android:background="@drawable/login_input_bg"
+            android:padding="5dp"
+            android:hint="验证码"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/tvSendVertifyCode"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/send_vertify_code"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        style="?borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="忘记密码"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/primary_btn_bg"
+        android:text="@string/confim"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
+        app:layout_constraintTop_toBottomOf="@+id/etRePassword" />
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

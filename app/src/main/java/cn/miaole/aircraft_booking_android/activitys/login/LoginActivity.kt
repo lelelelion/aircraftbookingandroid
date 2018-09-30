@@ -51,7 +51,7 @@ class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(), LoginActivityCo
             onBackPressed()
         })
         tvForgetPwd.setOnClickListener {
-            jumpTo(ForgetPwdActivity::class.java)
+            jumpForResult(ForgetPwdActivity::class.java, 0)
         }
         tvRegisterNow.setOnClickListener {
             sendCode({
@@ -76,14 +76,9 @@ class LoginActivity : MVPBaseActivity<LoginActivityPresenter>(), LoginActivityCo
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             0 -> {          //注册成功的回调
-                Logger.i("Register Result")
                 data?.apply {
                     val username = getStringExtra(RegisterActivity.REGISTER_USERNAME)
                     val password = getStringExtra(RegisterActivity.REGISTER_PASSWORD)
-                    if(username == "" || password == ""){
-                        btnRegister.snackbar(R.string.please_complete_info)
-                        return@apply
-                    }
                     etUsername.setText(username)
                     etPassword.setText(password)
                 }

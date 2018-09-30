@@ -117,4 +117,16 @@ interface UserService {
     fun getUserInfo(
             @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String
     ): Observable<ResponseBody<User>>
+
+    /**
+     * 忘记密码
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.FORGET_PASSWORD_URL)
+    fun forgetPassword(
+            @Field(ApiInfo.FORGET_PASSWORD_PARAM_PHONE) phone: String,
+            @Field(ApiInfo.FORGET_PASSWORD_PARAM_NEW_PASSWORD) newPassword: String,
+            @Field(ApiInfo.FORGET_PASSWORD_PARAM_CODE) code: String,
+            @Field(ApiInfo.FORGET_PASSWORD_PARAM_ZONE) zone: String
+    ): Observable<ResponseBody<EmptyResponseData>>
 }
