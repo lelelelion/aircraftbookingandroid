@@ -21,7 +21,7 @@ class TicketAdapter(list: MutableList<Ticket>)
                         .setText(R.id.tvTicketNum,
                                 mContext.getString(R.string.remain_ticket_num, item.standbyTicket.toString()))
                         .setText(R.id.tvPrice,
-                                mContext.getString(R.string.price, (item.price * item.discount).toFixed(1)))
+                                mContext.getString(R.string.price, (item.price * item.discount).toInt().toString()))
                         .addOnClickListener(R.id.btnBooking)
 
             }

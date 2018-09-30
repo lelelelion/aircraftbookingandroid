@@ -91,7 +91,7 @@ class BookingActivity : MVPBaseActivity<BookingActivityPresenter>(),
 
             ticketInfo = getStringExtra(PARAM_TICKET_INFO)
                     .easyToObj(Ticket::class.java)
-            tvPrice.text = getString(R.string.price, (ticketInfo.price * ticketInfo.discount).toFixed(1))
+            tvPrice.text = getString(R.string.price, (ticketInfo.price * ticketInfo.discount).toInt())
         }
 
 

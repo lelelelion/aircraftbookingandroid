@@ -71,4 +71,6 @@
     <string name="generate_order_fail">下单失败</string>
     <string name="delete_order">删除订单</string>
     <string name="total_price">合计：¥%1$s</string>
+    <string name="order_detail">订单详情</string>
+    <string name="i_want_return_ticket">我要退票</string>
 </resources>

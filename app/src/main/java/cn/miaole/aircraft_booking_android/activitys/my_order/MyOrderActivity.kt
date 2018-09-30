@@ -3,7 +3,11 @@ package cn.miaole.aircraft_booking_android.activitys.my_order
 import android.os.Bundle
 import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.BaseRecyclerViewActivity
+import cn.miaole.aircraft_booking_android.activitys.order_detail.OrderDetailActivity
+import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.model.internet.data.GetOrdersResponseData
+import cn.miaole.aircraft_booking_android.model.params.IntentParam
+import cn.miaole.aircraft_booking_android.utils.easyToJson
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_booking.*
@@ -50,8 +54,14 @@ class MyOrderActivity : BaseRecyclerViewActivity<MyOrderActivityPresenter>(),
         adapter?.apply {
             bindToRecyclerView(recyclerView)
 
+            setOnItemClickListener { adapter, view, position ->
+                (adapter as MyOrderAdapter).getItem(position)?.let { item ->
+                    jumpTo(OrderDetailActivity::class.java, IntentParam()
+                            .add(OrderDetailActivity.PARAM_GET_ORDERS_RESPONSE_DATA, item.easyToJson())
+                    )
+                }
+            }
             setOnItemChildClickListener { adapter, view, position ->
-                toast("click: ${view.id}")
                 when(view.id){
                     R.id.tvDeleteOrder -> {
                         (adapter as MyOrderAdapter).getItem(position)?.let { item ->

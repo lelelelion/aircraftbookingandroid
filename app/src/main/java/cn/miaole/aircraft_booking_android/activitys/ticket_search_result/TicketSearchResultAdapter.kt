@@ -24,10 +24,10 @@ class TicketSearchResultAdapter(val list: MutableList<SearchAvaliableFlightRespo
                         .setText(R.id.tvDuration, item.duration)
                         .setText(R.id.tvFlightNumberAndAccount,
                                 mContext.getString(R.string.aircraft_number_and_account,
-                                        item.aircraft.flightNumber, (ticket.discount * 10).toFixed(1)))
+                                        item.aircraft.flightNumber, (ticket.discount * 10).toInt().toString()))
                         .setText(R.id.tvPrice,
                                 mContext.getString(R.string.price,
-                                        (ticket.price * ticket.discount).toFixed(1)))
+                                        (ticket.price * ticket.discount).toInt().toString()))
 
             }
         }
