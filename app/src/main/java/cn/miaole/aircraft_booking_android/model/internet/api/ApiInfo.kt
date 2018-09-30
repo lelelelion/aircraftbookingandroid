@@ -131,5 +131,7 @@ object ApiInfo {
     const val GENERATE_ORDER_PARAM_PHONE = "phone"
     const val GENERATE_ORDER_PARAM_EMAIL = "email"
 
-
+    //退票
+    const val RETURN_TICKET_URL = "/returnTicket"
+    const val RETURN_TICKET_PARAM_ORDER_ID = "orderId"
 }

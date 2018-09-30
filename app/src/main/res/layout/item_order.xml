@@ -134,14 +134,26 @@
 
     <include layout="@layout/divider_line"/>
 
-    <TextView
-        android:id="@+id/tvDeleteOrder"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:textColor="@color/text_gray"
-        android:background="@drawable/item_booking_passenger_bg"
-        android:text="@string/delete_order"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvStatus"
+            android:text="已完成"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginEnd="12dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tvDeleteOrder"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textColor="@color/text_gray"
+            android:background="@drawable/item_booking_passenger_bg"
+            android:text="@string/delete_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>

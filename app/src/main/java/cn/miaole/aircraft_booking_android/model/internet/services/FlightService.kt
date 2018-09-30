@@ -37,4 +37,13 @@ interface FlightService {
             @Field(ApiInfo.GENERATE_ORDER_PARAM_EMAIL) email: String
     ): Observable<ResponseBody<EmptyResponseData>>
 
+    /**
+     * 退票
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.RETURN_TICKET_URL)
+    fun returnTicket(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Field(ApiInfo.RETURN_TICKET_PARAM_ORDER_ID) orderId: String
+    ): Observable<ResponseBody<EmptyResponseData>>
 }

@@ -1,6 +1,7 @@
 package cn.miaole.aircraft_booking_android.activitys.order_detail
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
@@ -20,8 +21,19 @@ import java.util.*
 
 class OrderDetailActivity : MVPBaseActivity<OrderDetailActivityPresenter>(),
         OrderDetailActivityContract.View {
+
     companion object {
         const val PARAM_GET_ORDERS_RESPONSE_DATA = "PARAM_GET_ORDERS_RESPONSE_DATA"
+        const val RESULT_IS_RETURN = "RESULT_IS_RETURN"
+    }
+
+    override fun returnTicketSuccess() {
+        Intent().apply {
+            putExtra(RESULT_IS_RETURN, true)
+            setResult(0, this)
+        }
+        toast(R.string.return_ticket_success)
+        finish()
     }
 
     override fun onCretePresenter(): OrderDetailActivityPresenter =
@@ -72,11 +84,11 @@ class OrderDetailActivity : MVPBaseActivity<OrderDetailActivityPresenter>(),
             adapter.addData(getOrdersResponseData.passengers)
         }
 
-        if(getOrdersResponseData.status == 1){      //订单已完成，不能退票
+        if (getOrdersResponseData.status != 0) {      //订单已完成，不能退票
             btnReturnTicket.visibility = View.GONE
         } else {
             btnReturnTicket.setOnClickListener {
-                toast("return ticket")
+                mPresenter.returnTicket(getOrdersResponseData.id)
             }
         }
 

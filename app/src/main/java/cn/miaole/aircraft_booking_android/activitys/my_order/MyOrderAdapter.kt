@@ -31,6 +31,21 @@ class MyOrderAdapter(list: MutableList<GetOrdersResponseData>) :
                         .setText(R.id.tvDuration, flightInfo.duration)
                         .setText(R.id.tvTotalPrice,
                                 mContext.getString(R.string.total_price, item.cost.toString()))
+                when(item.status){
+                    0 -> {
+                        holder.setVisible(R.id.tvStatus, false)
+                    }
+                    2 -> {
+                        holder.setVisible(R.id.tvStatus, true)
+                        holder.setText(R.id.tvStatus, R.string.already_return)
+                    }
+                    1 -> {
+                        holder.setVisible(R.id.tvStatus, true)
+                        holder.setText(R.id.tvStatus, R.string.already_finish)
+                    }
+                    else -> {
+                    }
+                }
             }
         }
     }

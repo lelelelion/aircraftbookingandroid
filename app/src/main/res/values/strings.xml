@@ -74,4 +74,7 @@
     <string name="order_detail">订单详情</string>
     <string name="i_want_return_ticket">我要退票</string>
     <string name="remain_money">余额：¥%1$s</string>
+    <string name="already_return">已退票</string>
+    <string name="already_finish">已完成</string>
+    <string name="return_ticket_success">退票成功</string>
 </resources>

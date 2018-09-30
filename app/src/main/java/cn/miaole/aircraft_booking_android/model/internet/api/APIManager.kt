@@ -272,7 +272,7 @@ object APIManager {
     /**
      * 获取用户信息
      */
-    fun getUserInfo(): Observable<ResponseBody<User>>{
+    fun getUserInfo(): Observable<ResponseBody<User>> {
         return Observable.just(1)
                 .flatMap {
                     return@flatMap getUserService(GsonConverterFactory.create())
@@ -306,6 +306,18 @@ object APIManager {
                     return@flatMap getFlightService(GsonConverterFactory.create())
                             .generateOrder(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
                                     ticketId, passengers, name, phone, email)
+                }
+    }
+
+    /**
+     * 退票
+     */
+    fun returnTicket(orderId: String): Observable<ResponseBody<EmptyResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getFlightService(GsonConverterFactory.create())
+                            .returnTicket(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    orderId)
                 }
     }
 
