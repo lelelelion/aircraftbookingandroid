@@ -98,4 +98,14 @@ interface UserService {
             @Query(ApiInfo.GET_ORDERS_PARAM_PAGE) page: Int,
             @Query(ApiInfo.GET_ORDERS_PARAM_SIZE) size: Int
     ): Observable<ResponseBody<List<GetOrdersResponseData>>>
+
+    /**
+     * 删除订单
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.DELETE_ORDER_URL)
+    fun deleteOrder(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Field(ApiInfo.DELETE_ORDER_PARAM_ORDER_ID) orderId: String
+    ): Observable<ResponseBody<EmptyResponseData>>
 }

@@ -257,6 +257,18 @@ object APIManager {
                 }
     }
 
+    /**
+     * 删除订单
+     */
+    fun deleteOrder(orderId: String): Observable<ResponseBody<EmptyResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .deleteOrder(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    orderId)
+                }
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////// 航班相关接口
     //////////////////////////////////////////////////////////////////////

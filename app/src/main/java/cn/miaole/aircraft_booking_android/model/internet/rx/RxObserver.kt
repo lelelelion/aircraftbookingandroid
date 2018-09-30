@@ -2,7 +2,11 @@ package cn.miaole.aircraft_booking_android.model.internet.rx
 
 import android.content.Context
 import android.support.annotation.CallSuper
+import android.support.v7.app.AppCompatActivity
+import cn.miaole.aircraft_booking_android.activitys.base.ABAActivity
 import cn.miaole.aircraft_booking_android.activitys.base.mvp.BasePresenter
+import cn.miaole.aircraft_booking_android.extensions.toast
+import cn.miaole.aircraft_booking_android.model.ABAApi
 import cn.miaole.aircraft_booking_android.model.event.RefreshEvent
 import com.orhanobut.logger.Logger
 import io.reactivex.Observer
@@ -32,6 +36,8 @@ abstract class RxObserver<T>(private val mp: BasePresenter<*, *>? = null,
         EventBus.getDefault()
                 .post(RefreshEvent())
 
+        if (mp?.mView is Context)
+            (mp.mView as Context).toast(e.message ?: "")
         //todo 下面对错误进行统一处理
         _onError(e.message ?: "")
     }

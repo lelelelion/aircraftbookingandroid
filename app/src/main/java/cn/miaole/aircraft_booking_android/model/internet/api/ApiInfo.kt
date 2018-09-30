@@ -96,6 +96,10 @@ object ApiInfo {
     const val GET_ORDERS_PARAM_PAGE = "page"
     const val GET_ORDERS_PARAM_SIZE = "size"
 
+    //删除订单
+    const val DELETE_ORDER_URL = "/deleteOrder"
+    const val DELETE_ORDER_PARAM_ORDER_ID = "orderId"
+
 
     /**********************************************************************
      *

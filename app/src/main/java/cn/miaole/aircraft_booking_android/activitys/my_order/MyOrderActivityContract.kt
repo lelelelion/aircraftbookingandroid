@@ -8,14 +8,18 @@ import cn.miaole.aircraft_booking_android.model.internet.data.GetOrdersResponseD
 interface MyOrderActivityContract {
     interface View : BaseView {
         fun getOrdersSuccess(data: List<GetOrdersResponseData>, isRefresh: Boolean)
+        fun deleteOrderSuccess(order: GetOrdersResponseData)
     }
 
     interface Model : BaseModel {
         fun getOrders(page: Int, size: Int, isRefresh: Boolean)
+        fun deleteOrder(order: GetOrdersResponseData)
     }
 
     abstract class Presenter : BasePresenter<View, Model>() {
         abstract fun getOrdersSuccess(data: List<GetOrdersResponseData>, isRefresh: Boolean)
         abstract fun getOrders(page: Int, size: Int, isRefresh: Boolean)
+        abstract fun deleteOrder(order: GetOrdersResponseData)
+        abstract fun deleteOrderSuccess(order: GetOrdersResponseData)
     }
 }

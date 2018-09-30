@@ -8,9 +8,19 @@ import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_booking.*
 import kotlinx.android.synthetic.main.bar_item.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 
 class MyOrderActivity : BaseRecyclerViewActivity<MyOrderActivityPresenter>(),
         MyOrderActivityContract.View {
+    override fun deleteOrderSuccess(order: GetOrdersResponseData) {
+        (adapter as MyOrderAdapter).apply {
+            remove(data.indexOf(order))
+        }
+    }
+
     override fun getOrdersSuccess(data: List<GetOrdersResponseData>, isRefresh: Boolean) {
         (adapter as MyOrderAdapter).apply {
             if (isRefresh)
@@ -39,6 +49,20 @@ class MyOrderActivity : BaseRecyclerViewActivity<MyOrderActivityPresenter>(),
         adapter = MyOrderAdapter(mutableListOf())
         adapter?.apply {
             bindToRecyclerView(recyclerView)
+
+            setOnItemChildClickListener { adapter, view, position ->
+                toast("click: ${view.id}")
+                when(view.id){
+                    R.id.tvDeleteOrder -> {
+                        (adapter as MyOrderAdapter).getItem(position)?.let { item ->
+                            alert("", getString(R.string.confirm_delete)) {
+                                yesButton { mPresenter.deleteOrder(item) }
+                                noButton {  }
+                            }.show()
+                        }
+                    }
+                }
+            }
         }
         loadData(true)
     }

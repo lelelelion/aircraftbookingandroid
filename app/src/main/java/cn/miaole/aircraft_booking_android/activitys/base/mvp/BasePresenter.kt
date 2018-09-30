@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 abstract class BasePresenter<V : BaseView, M : BaseModel> {
-    protected lateinit var mView: V
+    lateinit var mView: V
     protected lateinit var mModel: M
 
     // 用来保存订阅，便于统一取消

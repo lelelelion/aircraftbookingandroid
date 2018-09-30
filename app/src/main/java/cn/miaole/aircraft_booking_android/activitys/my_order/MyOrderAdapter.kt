@@ -15,7 +15,10 @@ class MyOrderAdapter(list: MutableList<GetOrdersResponseData>) :
                 val instance = Calendar.getInstance()
                 instance.timeInMillis = item.Ticket.effectDate
                 val flightInfo = item.Ticket.Flight
-                holder.setText(R.id.tvFlightNumberAndDateAndWeek,
+                holder
+                        .addOnClickListener(R.id.tvDeleteOrder)
+                        .addOnClickListener(R.id.tvTotalPrice)
+                        .setText(R.id.tvFlightNumberAndDateAndWeek,
                         mContext.getString(R.string.aircraft_number_and_date_and_week,
                                 flightInfo.aircraft.flightNumber, "${instance.get(Calendar.YEAR)}" +
                                 "-${instance.get(Calendar.MONTH) + 1}" +
