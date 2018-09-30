@@ -261,6 +261,19 @@ object APIManager {
                 }
     }
 
+    /**
+     * 生成订单
+     */
+    fun generateOrder(ticketId: String, passengers: ArrayList<String>, name: String,
+             phone: String, email: String = ""): Observable<ResponseBody<EmptyResponseData>>{
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getFlightService(GsonConverterFactory.create())
+                            .generateOrder(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    ticketId, passengers, name, phone, email)
+                }
+    }
+
 
     ///////////////////////////////////////////////////////////////////////
     /////////   通用API接口

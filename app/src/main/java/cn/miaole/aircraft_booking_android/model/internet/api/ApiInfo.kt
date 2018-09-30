@@ -113,4 +113,12 @@ object ApiInfo {
     const val SEARCH_AVALIABLE_FLIGHT_PARAM_DATE = "date"
     const val SEARCH_AVALIABLE_FLIGHT_PARAM_PAGE = "page"
     const val SEARCH_AVALIABLE_FLIGHT_PARAM_SIZE = "size"
+
+    //生成订单
+    const val GENERATE_ORDER_URL = "/generateOrder"
+    const val GENERATE_ORDER_PARAM_TICKET_ID = "ticketId"
+    const val GENERATE_ORDER_PARAM_PASSENGERS = "passengers[]"
+    const val GENERATE_ORDER_PARAM_CONTACT_NAME = "contactName"
+    const val GENERATE_ORDER_PARAM_PHONE = "phone"
+    const val GENERATE_ORDER_PARAM_EMAIL = "email"
 }

@@ -2,12 +2,11 @@ package cn.miaole.aircraft_booking_android.model.internet.services
 
 import cn.miaole.aircraft_booking_android.model.internet.api.APIManager
 import cn.miaole.aircraft_booking_android.model.internet.api.ApiInfo
+import cn.miaole.aircraft_booking_android.model.internet.data.EmptyResponseData
 import cn.miaole.aircraft_booking_android.model.internet.data.ResponseBody
 import cn.miaole.aircraft_booking_android.model.internet.data.SearchAvaliableFlightResponseData
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface FlightService {
 
@@ -22,4 +21,19 @@ interface FlightService {
             @Query(ApiInfo.SEARCH_AVALIABLE_FLIGHT_PARAM_PAGE) page: Int,
             @Query(ApiInfo.SEARCH_AVALIABLE_FLIGHT_PARAM_SIZE) size: Int
     ): Observable<ResponseBody<List<SearchAvaliableFlightResponseData>>>
+
+
+    /**
+     * 生成订单
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.GENERATE_ORDER_URL)
+    fun generateOrder(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Field(ApiInfo.GENERATE_ORDER_PARAM_TICKET_ID) ticketId: String,
+            @Field(ApiInfo.GENERATE_ORDER_PARAM_PASSENGERS) passengers: ArrayList<String>,
+            @Field(ApiInfo.GENERATE_ORDER_PARAM_CONTACT_NAME) name: String,
+            @Field(ApiInfo.GENERATE_ORDER_PARAM_PHONE) phone: String,
+            @Field(ApiInfo.GENERATE_ORDER_PARAM_EMAIL) email: String
+    ): Observable<ResponseBody<EmptyResponseData>>
 }

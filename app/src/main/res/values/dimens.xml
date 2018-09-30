@@ -52,4 +52,5 @@
     <dimen name="imgBtn_drawable_size">19dp</dimen>
     <dimen name="imgBtn_padding_left">55dp</dimen>
     <dimen name="imgBtn_padding_right">0dp</dimen>
+    <dimen name="icon_size">25dp</dimen>
 </resources>

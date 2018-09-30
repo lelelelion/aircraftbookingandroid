@@ -4,7 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
+import cn.miaole.aircraft_booking_android.activitys.booking.BookingActivity
+import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.model.internet.data.SearchAvaliableFlightResponseData
+import cn.miaole.aircraft_booking_android.model.params.IntentParam
+import cn.miaole.aircraft_booking_android.utils.easyToJson
 import cn.miaole.aircraft_booking_android.utils.easyToObj
 import cn.miaole.aircraft_booking_android.views.easy_refresh.CustomLinerLayoutManager
 import com.j.ming.easybar2.EasyBar
@@ -48,7 +52,7 @@ class SelectFlightActivity : MVPBaseActivity<SelectFlightActivityPresenter>(),
             instance.timeInMillis = flightInfo.tickets[0].effectDate
             tvFlightNumberAndDateAndWeek.text = getString(R.string.aircraft_number_and_date_and_week,
                     flightInfo.aircraft.flightNumber, "${instance.get(Calendar.YEAR)}" +
-                    "-${instance.get(Calendar.MONTH)}" +
+                    "-${instance.get(Calendar.MONTH) + 1}" +
                     "-${instance.get(Calendar.DAY_OF_MONTH)}",
                     getChineseWeek(instance.get(Calendar.DAY_OF_WEEK)))
             tvTurnOffTime.text = flightInfo.departTime
@@ -61,10 +65,36 @@ class SelectFlightActivity : MVPBaseActivity<SelectFlightActivityPresenter>(),
         economyCabinAdapter = TicketAdapter(mutableListOf())
         economyCabinAdapter.bindToRecyclerView(recyclerViewEconomyCabin)
         recyclerViewEconomyCabin.layoutManager = CustomLinerLayoutManager(this)
+        economyCabinAdapter.setOnItemChildClickListener { adapter, view, position ->
+            when(view.id){
+                R.id.btnBooking -> {
+                    (adapter as TicketAdapter).getItem(position)
+                            ?.let {
+                                jumpTo(BookingActivity::class.java, IntentParam()
+                                        .add(BookingActivity.PARAM_FLIGHT_INFO, flightInfo.easyToJson())
+                                        .add(BookingActivity.PARAM_TICKET_INFO, it.easyToJson())
+                                )
+                            }
+                }
+            }
+        }
 
         businessCabinAdapter = TicketAdapter(mutableListOf())
         businessCabinAdapter.bindToRecyclerView(recyclerViewBusinessCabin)
         recyclerViewBusinessCabin.layoutManager = CustomLinerLayoutManager(this)
+        businessCabinAdapter.setOnItemChildClickListener { adapter, view, position ->
+            when(view.id){
+                R.id.btnBooking -> {
+                    (adapter as TicketAdapter).getItem(position)
+                            ?.let {
+                                jumpTo(BookingActivity::class.java, IntentParam()
+                                        .add(BookingActivity.PARAM_FLIGHT_INFO, flightInfo.easyToJson())
+                                        .add(BookingActivity.PARAM_TICKET_INFO, it.easyToJson())
+                                )
+                            }
+                }
+            }
+        }
 
         flightInfo.tickets.forEach {
             when (it.level) {
