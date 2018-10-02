@@ -92,4 +92,16 @@
     <string name="modify_mine_info">修改我的信息</string>
     <string name="update_info_success">更新成功</string>
     <string name="select_gender">选择性别</string>
+    <string name="return_modify_rule">
+        <table>
+            <tr>
+                <th>舱位</th>
+                <th>经济舱</th>
+            </tr>
+            <tr>
+                <td>退票费</td>
+                <td>sadfasf</td>
+            </tr>
+        </table>
+    </string>
 </resources>

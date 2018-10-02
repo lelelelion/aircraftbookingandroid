@@ -74,4 +74,6 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
     //字母排序
     implementation 'com.lwkandroid:IndexBar:1.0.1'
+    //表格
+    implementation 'com.github.huangyanbin:SmartTable:2.2.0'
 }

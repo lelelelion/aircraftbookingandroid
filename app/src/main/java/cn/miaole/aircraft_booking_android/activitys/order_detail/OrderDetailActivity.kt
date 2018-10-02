@@ -9,15 +9,18 @@ import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
 import cn.miaole.aircraft_booking_android.activitys.booking.BookingPassengerAdapter
 import cn.miaole.aircraft_booking_android.extensions.toast
+import cn.miaole.aircraft_booking_android.model.data.WithdrawalRule
 import cn.miaole.aircraft_booking_android.model.internet.data.Flight
 import cn.miaole.aircraft_booking_android.model.internet.data.Order
 import cn.miaole.aircraft_booking_android.utils.DateUtil
 import cn.miaole.aircraft_booking_android.utils.easyToObj
+import com.bin.david.form.core.SmartTable
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import kotlinx.android.synthetic.main.bar_item.*
 import java.util.*
+
 
 class OrderDetailActivity : MVPBaseActivity<OrderDetailActivityPresenter>(),
         OrderDetailActivityContract.View {
@@ -77,6 +80,8 @@ class OrderDetailActivity : MVPBaseActivity<OrderDetailActivityPresenter>(),
         tvContact.text = "${getOrdersResponseData.contactName}(${getOrdersResponseData.phone})"
         tvTotalPrice.text = getString(R.string.total_price, getOrdersResponseData.cost.toString())
 
+//        tvReturnRule.showHtml(getString(R.string.return_modify_rule))
+
         passengersRecyclerView.layoutManager = GridLayoutManager(this, 5)
         adapter = BookingPassengerAdapter(mutableListOf())
         adapter.apply {
@@ -92,5 +97,13 @@ class OrderDetailActivity : MVPBaseActivity<OrderDetailActivityPresenter>(),
             }
         }
 
+
+        val list = mutableListOf<WithdrawalRule>(
+                WithdrawalRule("退票费", "起飞前12小时前      40%\n起飞前12小时后      50%"),
+                WithdrawalRule("同舱改期", "不可同舱改期"),
+                WithdrawalRule("签转", "不可签转")
+        )
+        val t = findViewById<SmartTable<WithdrawalRule>>(R.id.table)
+        t.setData(list)
     }
 }
