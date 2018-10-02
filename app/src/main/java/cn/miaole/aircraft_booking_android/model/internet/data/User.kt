@@ -9,6 +9,7 @@ data class User(
         val email: String,
         val money: Int,
         val id: String,
+        val birthday: Long,
         val createdAt: Long,
         val updatedAt: Long,
         val version: Int

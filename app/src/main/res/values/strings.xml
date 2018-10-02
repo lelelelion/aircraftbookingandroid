@@ -84,4 +84,6 @@
     <string name="verification_send_fail">验证码发送失败</string>
     <string name="send_code_after_several_second">重新发送(%1$s)</string>
     <string name="modify_password_success">修改密码成功</string>
+    <string name="my_info">我的信息</string>
+    <string name="unknow">未知</string>
 </resources>

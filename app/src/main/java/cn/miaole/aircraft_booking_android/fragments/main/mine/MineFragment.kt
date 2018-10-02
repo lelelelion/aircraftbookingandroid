@@ -5,13 +5,16 @@ import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.about_us.AboutUsActivity
 import cn.miaole.aircraft_booking_android.activitys.base.fragment.MVPBaseFragment
 import cn.miaole.aircraft_booking_android.activitys.login.LoginActivity
+import cn.miaole.aircraft_booking_android.activitys.mine_info.MineInfoActivity
 import cn.miaole.aircraft_booking_android.activitys.my_order.MyOrderActivity
 import cn.miaole.aircraft_booking_android.activitys.my_trip.MyTripActivity
 import cn.miaole.aircraft_booking_android.activitys.passengers.PassengersActivity
+import cn.miaole.aircraft_booking_android.extensions.jumpForResult
 import cn.miaole.aircraft_booking_android.extensions.jumpTo
 import cn.miaole.aircraft_booking_android.extensions.loadCircle
 import cn.miaole.aircraft_booking_android.extensions.snackLoginTip
 import cn.miaole.aircraft_booking_android.model.ABAApi
+import cn.miaole.aircraft_booking_android.model.params.IntentParam
 import com.j.ming.easybar2.EasyBar
 import com.j.ming.easybar2.init
 import kotlinx.android.synthetic.main.bar_item.*
@@ -74,7 +77,7 @@ class MineFragment : MVPBaseFragment<MineFragmentPresenter>(), MineFragmentContr
 
         clUser.setOnClickListener {
             if (ABAApi.isLogin) {
-
+                activity?.jumpTo(MineInfoActivity::class.java)
             } else {
                 activity?.jumpTo(LoginActivity::class.java)
             }
