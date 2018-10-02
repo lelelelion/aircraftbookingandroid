@@ -99,6 +99,21 @@ fun Context.showSelectDateDialog(@StyleRes style: Int = android.R.style.Theme_De
             .show()
 }
 
+fun Context.showSelectDateDialog(@StyleRes style: Int = android.R.style.Theme_DeviceDefault_Dialog,
+                                 listener: (Long) -> Unit =
+                                         { time -> }) {
+    val c = Calendar.getInstance()
+    DatePickerDialog(this, style, { view, year, month, dayOfMonth ->
+        c.timeInMillis = 0
+        c.set(Calendar.YEAR, year)
+        c.set(Calendar.MONTH, month)
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        listener(c.timeInMillis)
+    }, c.get(Calendar.YEAR),
+            c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
+            .show()
+}
+
 
 fun Context.checkMyPermission(permission: String, granted: () -> Unit = {}, deny: () -> Unit = {}) {
     if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {

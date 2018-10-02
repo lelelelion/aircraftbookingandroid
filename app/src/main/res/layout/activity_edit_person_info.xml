@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_grey"
+    tools:context=".activitys.edit_person_info.EditPersonInfoActivity">
+
+    <include layout="@layout/bar_item"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:layout_height="@dimen/mine_item_height">
+        <TextView
+            android:background="@color/white"
+            android:layout_width="80dp"
+            android:text="@string/nickname"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_gray"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/etNickname"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="16sp"
+            android:hint="@string/nickname"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:background="@color/white"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:layout_height="@dimen/mine_item_height">
+        <TextView
+            android:background="@color/white"
+            android:layout_width="80dp"
+            android:text="@string/birthday"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_gray"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/etBirthday"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="16sp"
+            android:hint="@string/birthday"
+            android:layout_height="match_parent" />
+
+        <cn.miaole.aircraft_booking_android.views.TinImageView
+            android:id="@+id/imgCalendar"
+            app:srcCompat="@drawable/icon_calendar"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:background="@color/white"
+        android:layout_height="@dimen/mine_item_height">
+        <TextView
+            android:background="@color/white"
+            android:layout_width="80dp"
+            android:text="@string/gender"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_gray"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/etGender"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="16sp"
+            android:focusable="false"
+            android:hint="@string/gender"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:background="@color/white"
+        android:layout_marginTop="12dp"
+        android:layout_height="@dimen/mine_item_height">
+        <TextView
+            android:background="@color/white"
+            android:layout_width="80dp"
+            android:text="@string/phone_number"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_gray"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="16sp"
+            android:focusable="false"
+            android:hint="@string/phone_number"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:background="@color/white"
+        android:layout_height="@dimen/mine_item_height">
+        <TextView
+            android:background="@color/white"
+            android:layout_width="80dp"
+            android:text="@string/email"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_gray"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="16sp"
+            android:hint="@string/email"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>

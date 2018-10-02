@@ -139,4 +139,18 @@ interface UserService {
             @Query(ApiInfo.GET_TRIPS_PARAM_PAGE) page: Int,
             @Query(ApiInfo.GET_TRIPS_PARAM_SIZE) size: Int
     ): Observable<ResponseBody<List<Order>>>
+
+    /**
+     * 更新用户信息
+     */
+    @FormUrlEncoded
+    @POST(ApiInfo.UPDATE_USER_INFO_URL)
+    fun updateUserInfo(
+            @Header(ApiInfo.REQUIRE_HEADER_AUTHORIZARION) token: String,
+            @Field(ApiInfo.UPDATE_USER_INFO_PARAM_PHONE) phone: String,
+            @Field(ApiInfo.UPDATE_USER_INFO_PARAM_NICKNAME) nickname: String,
+            @Field(ApiInfo.UPDATE_USER_INFO_PARAM_EMAIL) email: String,
+            @Field(ApiInfo.UPDATE_USER_INFO_PARAM_GENDER) gender: Int,
+            @Field(ApiInfo.UPDATE_PASSENGER_CONTACT_PARAM_BIRTHDAY) birthday: Long
+    ): Observable<ResponseBody<EmptyResponseData>>
 }

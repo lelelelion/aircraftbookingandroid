@@ -16,6 +16,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Field
 import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
 
@@ -298,6 +299,24 @@ object APIManager {
                     return@flatMap getUserService(GsonConverterFactory.create())
                             .getTrips(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
                                     page, size)
+                }
+    }
+
+    /**
+     * 更新用户信息
+     */
+    fun updateUserInfo(
+            phone: String,
+            nickname: String,
+            email: String,
+            gender: Int,
+            birthday: Long
+    ): Observable<ResponseBody<EmptyResponseData>> {
+        return Observable.just(1)
+                .flatMap {
+                    return@flatMap getUserService(GsonConverterFactory.create())
+                            .updateUserInfo(ApiInfo.BASE_TOKEN_PREFIX + ABAApi.authorizationToken,
+                                    phone, nickname, email, gender, birthday)
                 }
     }
 

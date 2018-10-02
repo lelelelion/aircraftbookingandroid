@@ -1,10 +1,11 @@
 package cn.miaole.aircraft_booking_android.activitys.mine_info
 
+import android.content.Intent
 import android.os.Bundle
 import cn.miaole.aircraft_booking_android.R
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
-import cn.miaole.aircraft_booking_android.extensions.loadCircle
-import cn.miaole.aircraft_booking_android.extensions.toYMD
+import cn.miaole.aircraft_booking_android.activitys.edit_person_info.EditPersonInfoActivity
+import cn.miaole.aircraft_booking_android.extensions.*
 import cn.miaole.aircraft_booking_android.model.ABAApi
 import cn.miaole.aircraft_booking_android.model.internet.data.User
 import com.j.ming.dcim.extensions.load
@@ -15,6 +16,14 @@ import kotlinx.android.synthetic.main.bar_item.*
 
 class MineInfoActivity : MVPBaseActivity<MineInfoActivityPresenter>(),
         MineInfoActivityContract.View {
+    override fun getUserInfoSuccess(result: User) {
+        fillInfo()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mPresenter.getUserInfo()
+    }
 
     override fun onCretePresenter(): MineInfoActivityPresenter =
             MineInfoActivityPresenter(this)
@@ -30,10 +39,14 @@ class MineInfoActivity : MVPBaseActivity<MineInfoActivityPresenter>(),
     private fun initView() {
         easyBar.init(mode = EasyBar.Mode.ICON, titleRes = R.string.my_info, leftCallback = {
             onBackPressed()
-        }, rightRes = R.drawable.icon_edit)
-        intent.apply {
-            userInfo = ABAApi.userInfo!!
-        }
+        }, rightRes = R.drawable.icon_edit, rightCallback = {
+            jumpForResult(EditPersonInfoActivity::class.java, 0)
+        })
+        fillInfo()
+    }
+
+    fun fillInfo() {
+        userInfo = ABAApi.userInfo!!
 
         tvName.text = if (userInfo.nickname != "")
             userInfo.nickname
@@ -71,5 +84,10 @@ class MineInfoActivity : MVPBaseActivity<MineInfoActivityPresenter>(),
         } else {
             imgGender.load(R.drawable.icon_femael)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        mPresenter.getUserInfo()
     }
 }

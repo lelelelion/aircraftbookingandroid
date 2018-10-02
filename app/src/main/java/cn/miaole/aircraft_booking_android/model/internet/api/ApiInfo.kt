@@ -51,6 +51,8 @@ object ApiInfo {
     const val UPDATE_USER_INFO_PARAM_PHONE = "phone"
     const val UPDATE_USER_INFO_PARAM_EMAIL = "email"
     const val UPDATE_USER_INFO_PARAM_NICKNAME = "nickname"
+    const val UPDATE_USER_INFO_PARAM_GENDER = "gender"
+    const val UPDATE_USER_INFO_PARAM_BIRTHDAY = "birthday"
 
     //获取用户信息
     const val GET_USER_INFO_URL = "/getUserInfo"

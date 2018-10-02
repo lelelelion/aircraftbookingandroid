@@ -43,7 +43,8 @@
             android:name=".activitys.booking.BookingActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activitys.order_detail.OrderDetailActivity" />
-        <activity android:name=".activitys.mine_info.MineInfoActivity"></activity>
+        <activity android:name=".activitys.mine_info.MineInfoActivity" />
+        <activity android:name=".activitys.edit_person_info.EditPersonInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -86,4 +86,10 @@
     <string name="modify_password_success">修改密码成功</string>
     <string name="my_info">我的信息</string>
     <string name="unknow">未知</string>
+    <string name="nickname">昵称</string>
+    <string name="birthday">生日</string>
+    <string name="gender">性别</string>
+    <string name="modify_mine_info">修改我的信息</string>
+    <string name="update_info_success">更新成功</string>
+    <string name="select_gender">选择性别</string>
 </resources>
