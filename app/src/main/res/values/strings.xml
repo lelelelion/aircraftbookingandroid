@@ -104,4 +104,7 @@
             </tr>
         </table>
     </string>
+    <string name="no_passenger_info">没有乘机人信息</string>
+    <string name="add">添加</string>
+    <string name="select_certificate_type">选择证件类型</string>
 </resources>

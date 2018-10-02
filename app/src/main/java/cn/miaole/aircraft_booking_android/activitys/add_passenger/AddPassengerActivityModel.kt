@@ -5,6 +5,7 @@ import cn.miaole.aircraft_booking_android.model.internet.data.Passenger
 import cn.miaole.aircraft_booking_android.model.internet.rx.RxObserver
 import cn.miaole.aircraft_booking_android.model.internet.rx.RxResultHelper
 import cn.miaole.aircraft_booking_android.utils.RxSchedulersHelper
+import com.orhanobut.logger.Logger
 
 class AddPassengerActivityModel(val mPresenter: AddPassengerActivityPresenter)
     : AddPassengerActivityContact.Model {

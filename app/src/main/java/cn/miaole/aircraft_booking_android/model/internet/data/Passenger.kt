@@ -2,7 +2,7 @@ package cn.miaole.aircraft_booking_android.model.internet.data
 
 data class Passenger(
     val name: String,
-    val certificateType: String,
+    val certificateType: Int,
     val certificateValue: String,
     val birthday: Int,
     val phone: String,

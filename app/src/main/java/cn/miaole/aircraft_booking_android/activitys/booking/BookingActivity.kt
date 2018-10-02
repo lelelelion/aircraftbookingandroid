@@ -3,6 +3,7 @@ package cn.miaole.aircraft_booking_android.activitys.booking
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import cn.miaole.aircraft_booking_android.R
+import cn.miaole.aircraft_booking_android.activitys.add_passenger.AddPassengerActivity
 import cn.miaole.aircraft_booking_android.activitys.base.activity.MVPBaseActivity
 import cn.miaole.aircraft_booking_android.activitys.main.MainActivity
 import cn.miaole.aircraft_booking_android.activitys.select_flight.SelectFlightActivity
@@ -41,11 +42,17 @@ class BookingActivity : MVPBaseActivity<BookingActivityPresenter>(),
 
     override fun loadPassengersSuccess(t: List<Passenger>) {
         val countries = t.map { return@map "${it.name}(${it.certificateValue})" }
-        selector("选择乘机人", countries) { dialogInterface, i ->
-            if (bookingPassengerAdapter.data.indexOf(t[i]) >= 0)
-                easyBar.snackbar(R.string.do_not_add_again)
-            else
-                bookingPassengerAdapter.addData(0, t[i])
+        if (countries.isEmpty()) {       //没有乘机人信息，弹窗并支持跳转到添加页面
+            easyBar.snackbar(getString(R.string.no_passenger_info), getString(R.string.add)) { v ->
+                jumpTo(AddPassengerActivity::class.java)
+            }
+        } else {
+            selector("选择乘机人", countries) { dialogInterface, i ->
+                if (bookingPassengerAdapter.data.indexOf(t[i]) >= 0)
+                    easyBar.snackbar(R.string.do_not_add_again)
+                else
+                    bookingPassengerAdapter.addData(0, t[i])
+            }
         }
     }
 
@@ -91,14 +98,15 @@ class BookingActivity : MVPBaseActivity<BookingActivityPresenter>(),
 
             ticketInfo = getStringExtra(PARAM_TICKET_INFO)
                     .easyToObj(Ticket::class.java)
-            tvPrice.text = getString(R.string.price, (ticketInfo.price * ticketInfo.discount).toInt())
+            tvPrice.text = getString(R.string.price, (ticketInfo.price * ticketInfo.discount)
+                    .toInt().toString())
         }
 
 
         recyclerView.layoutManager = GridLayoutManager(this, 5)
         bookingPassengerAdapter = BookingPassengerAdapter(mutableListOf())
         bookingPassengerAdapter.bindToRecyclerView(recyclerView)
-        bookingPassengerAdapter.addData(Passenger("添加", "", ""
+        bookingPassengerAdapter.addData(Passenger("添加", 0, ""
                 , 0, "", "", "", 0L, 0L, -1, "", true))
 
         bookingPassengerAdapter.setOnItemClickListener { adapter, view, position ->

@@ -36,7 +36,10 @@ class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
     //是否是成年人
     private var isAdult = true
 
+    private var certificateType = 0
+
     private var passenger: Passenger? = null
+    private val certificateTypes = listOf("身份证", "户口本", "护照")
 
     override fun onCretePresenter(): AddPassengerActivityPresenter = AddPassengerActivityPresenter(this)
 
@@ -60,7 +63,7 @@ class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
                 easyBar.snackbar(R.string.please_complete_info)
                 return@init
             }
-            if (!AccountValidatorUtil.isIDCard(idCard)) {
+            if (certificateType == 0 && !AccountValidatorUtil.isIDCard(idCard)) {
                 easyBar.snackbar(R.string.please_input_validate_id_card)
                 return@init
             }
@@ -73,10 +76,10 @@ class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
                 return@init
             }
             if (passenger != null)
-                mPresenter.updatePassengerContact(passenger!!.id, name, 0, idCard,
+                mPresenter.updatePassengerContact(passenger!!.id, name, certificateType, idCard,
                         isAdult, phone, email)
             else
-                mPresenter.addPassengerContact(name, 0, idCard, isAdult, phone, email)
+                mPresenter.addPassengerContact(name, certificateType, idCard, isAdult, phone, email)
         })
 
         val types = listOf("成人≥12", "2≤儿童<12")
@@ -87,6 +90,7 @@ class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
                 etName.setText(name)
                 etCertificateValue.setText(certificateValue)
                 liManType.setValue(types[if (isAdult) 0 else 1])
+                liCertificationType.setValue(certificateTypes[certificateType])
                 etPhoneNumber.setText(this.phone)
                 etEmail.setText(this.email)
                 easyBar.setTitle(R.string.update_passenger_info)
@@ -98,6 +102,14 @@ class AddPassengerActivity : MVPBaseActivity<AddPassengerActivityPresenter>(),
             selector(getString(R.string.select_passenger_type), types) { dialogInterface, i ->
                 liManType.setValue(types[i])
                 isAdult = i == 0
+            }
+        }
+
+        liCertificationType.setOnClickListener {
+
+            selector(getString(R.string.select_certificate_type), certificateTypes){di, i ->
+                liCertificationType.setValue(certificateTypes[i])
+                certificateType = i
             }
         }
     }
