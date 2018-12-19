@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/light_grey">
 
     <include layout="@layout/bar_item" />
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="20dp"
+                android:text="1．到机场  注意时间，因为航空公司规定航班起飞前30分钟停止办理登机手续，所以乘客最少在起飞前1个小时到机场。"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:padding="20dp"
+                android:text="2．办登机手续（也就是换登机牌）。看看你的航班在哪个柜台办理，机场都有显示屏告诉乘客哪个航班在哪个柜台，找到相应柜台，将机票、身份证交给机场值机人员。如果有大件行李，就在这里托运，经济舱20公斤以内的行李是免费的，液体超过100ML就要托运。要注意托运的行李不要夹带违禁物品，办完登机手续，值机人员会将机票的旅客联、登机牌、行李票，身份证退回。 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="3．过安检。到安检通道，通道口有个安检柜台，将机票的旅客联、登机牌、身份证交给安检员，安检员审核没问题会在登机牌上面盖章。然后过安检门，随身带的物品要从安检门旁的X光安检机过去，自己要从安检门通过。安检没问题就进候机厅。" />
+            <TextView
+                android:padding="20dp"
+                android:text="4．候机。通过安检后，看看登机牌上面会标明你的航班在哪个登机口登机，找到与登机口对应的候机厅，几号登机口就在几号候机厅候机。每个候机厅的位置，机场都会有显示屏显示，不清楚可以问机场服务人员。找到候机厅后等广播通知登机。"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:padding="20dp"
+                android:text="5．登机。听到登机广播后，在登机口会有服务人员撕登机牌，乘客到登机口将登机牌交服务人员，服务人员从登机牌撕一小块，其他部分交回，乘客持登机牌跟着别人上飞机吧。 "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:padding="20dp"
+                android:text="6．找机上位置。登机牌上标明有乘客的位置，如：5D、11C什么的，数字代表第几排，每排的座位是按A、B、C、D、E、F。排的，飞机上的座位号标在放行李的舱壁（座位上方）。找到对应位置坐下，扣上安全带，起飞前关掉手机"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:padding="20dp"
+                android:text="7．到达。飞机到达目的站后，如果有托运行李，记得去取行李，在往出口的通过上会有取行李的地方"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

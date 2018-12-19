@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">飞机订票</string>
+    <string name="app_name">飞飞</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="login">登陆</string>

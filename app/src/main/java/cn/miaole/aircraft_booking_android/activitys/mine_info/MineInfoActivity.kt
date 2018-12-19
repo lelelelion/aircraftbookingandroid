@@ -82,7 +82,7 @@ class MineInfoActivity : MVPBaseActivity<MineInfoActivityPresenter>(),
         if (userInfo.gender == 0) {
             imgGender.load(R.drawable.man)
         } else {
-            imgGender.load(R.drawable.icon_femael)
+            imgGender.load(R.drawable.icon_female)
         }
     }
 
